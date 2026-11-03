@@ -63,13 +63,6 @@ const cards = [
           </div>
         </div>
       </div>
-
-      <div class="reveal mt-10 text-center text-sm text-ink-faint">
-        想把几个版本都看看？前往
-        <a href="https://github.com/nabaonan/doit/releases" target="_blank" rel="noreferrer" class="font-medium text-brand hover:underline">
-          全部 Release&nbsp;→
-        </a>
-      </div>
     </div>
   </section>
 </template>

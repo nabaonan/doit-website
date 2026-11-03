@@ -3,7 +3,7 @@ const year = new Date().getFullYear()
 const projects = [
   { t: 'Doit GPUI', href: 'https://github.com/nabaonan/doit-gpui' },
   { t: 'Doit Mobile', href: 'https://github.com/nabaonan/doit-mobile' },
-  { t: 'Doit（Tauri 版）', href: 'https://github.com/nabaonan/doit' },
+  { t: 'Doit（Tauri 版）', href: 'https://github.com/nabaonan/doit/releases' },
 ]
 </script>
 
