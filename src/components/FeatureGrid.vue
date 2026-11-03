@@ -72,7 +72,7 @@ const items = [
               <path v-if="f.i2" :d="f.i2" />
             </svg>
           </span>
-          <div class="mt-4 text-[15px] font-semibold">{{ f.t }}</div>
+          <h3 class="mt-4 text-[15px] font-semibold">{{ f.t }}</h3>
           <p class="mt-1.5 text-[13px] leading-relaxed text-ink-faint">{{ f.d }}</p>
         </div>
       </div>

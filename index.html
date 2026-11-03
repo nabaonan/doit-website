@@ -20,6 +20,8 @@
           var t = localStorage.getItem('doit-theme')
           var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
           document.documentElement.classList.toggle('dark', dark)
+          var tc = document.querySelector('meta[name="theme-color"]')
+          if (tc) tc.setAttribute('content', dark ? '#0e120f' : '#f4f7f2')
         } catch (e) {}
       })()
     </script>

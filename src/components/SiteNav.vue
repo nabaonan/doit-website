@@ -54,7 +54,7 @@ const links = [
         </a>
         <button
           type="button"
-          class="ml-0.5 flex h-9 w-9 items-center justify-center rounded-full text-ink-soft transition hover:bg-brand-soft/70 hover:text-ink"
+          class="ml-0.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-ink-soft transition hover:bg-brand-soft/70 hover:text-ink active:scale-95"
           :aria-label="isDark ? '切换到浅色模式' : '切换到深色模式'"
           :title="isDark ? '浅色模式' : '深色模式'"
           @click="toggle"

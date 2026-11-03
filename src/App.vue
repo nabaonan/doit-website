@@ -27,8 +27,9 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen">
+    <a class="skip-link" href="#main">跳到正文</a>
     <SiteNav />
-    <main>
+    <main id="main">
       <HeroShowcase />
       <DesktopPanel />
       <MobilePanel />

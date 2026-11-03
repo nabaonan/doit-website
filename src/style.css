@@ -1,10 +1,11 @@
 :root {
+  color-scheme: light;
   --bg: #f4f7f2;
   --page: #edf3ea;
   --card: #ffffff;
   --ink: #1a1d1b;
   --ink-soft: #5c6861;
-  --ink-faint: #8e9991;
+  --ink-faint: #6a756f;
   --line: #e0e6df;
   --brand: #2fa361;
   --brand-strong: #1f7f4a;
@@ -18,12 +19,13 @@
 }
 
 html.dark {
+  color-scheme: dark;
   --bg: #0e120f;
   --page: #0a0d0b;
   --card: #151a16;
   --ink: #e9ede9;
   --ink-soft: #9aa89f;
-  --ink-faint: #67736b;
+  --ink-faint: #84918a;
   --line: #242c26;
   --brand: #4ed89c;
   --brand-strong: #85e7bc;
@@ -39,6 +41,7 @@ html {
 
 body {
   font-family: var(--font-sans);
+  -webkit-tap-highlight-color: rgba(47, 163, 97, 0.12);
   background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -49,6 +52,11 @@ body {
 ::selection {
   background: var(--brand-soft);
   color: var(--brand-strong);
+}
+
+a,
+button {
+  touch-action: manipulation;
 }
 
 ::-webkit-scrollbar {
@@ -85,6 +93,27 @@ button:focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+/* 跳转正文链接：默认隐藏，聚焦时可见 */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 100;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transform: translateY(-220%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

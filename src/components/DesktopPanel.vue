@@ -85,7 +85,7 @@ const views = [
                   <path v-if="v.c" :d="v.c" />
                 </svg>
               </span>
-              <div class="mt-3 text-[15px] font-semibold">{{ v.t }}</div>
+              <h3 class="mt-3 text-[15px] font-semibold">{{ v.t }}</h3>
               <p class="mt-1 text-[13px] leading-relaxed text-ink-faint">{{ v.d }}</p>
             </div>
           </div>

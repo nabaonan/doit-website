@@ -47,6 +47,8 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
             <img
               :src="desktopImg"
               alt="Doit GPUI 桌面端：今日待办视图"
+              width="973"
+              height="781"
               class="block w-full"
               loading="eager"
             />
@@ -61,6 +63,8 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
             <img
               :src="mobileImg"
               alt="Doit Mobile 移动端：今日待办视图"
+              width="1152"
+              height="2520"
               class="block h-full w-full rounded-[28px] object-cover"
               loading="eager"
             />
