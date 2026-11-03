@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Doit — 本地优先的极简待办：桌面端 Doit GPUI（纯 Rust + GPUI）与移动端 Doit Mobile（React Native）。无账号、可离线、跨端顺手。" />
+    <meta name="theme-color" content="#f4f7f2" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Doit — 一套待办，两种打开方式" />
+    <meta property="og:description" content="极简待办 · 桌面端 Doit GPUI 与移动端 Doit Mobile，本地优先，开源免费。" />
+    <title>Doit — 极简待办，桌面与移动端</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      // 首屏前应用主题，避免闪烁
+      ;(function () {
+        try {
+          var t = localStorage.getItem('doit-theme')
+          var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
