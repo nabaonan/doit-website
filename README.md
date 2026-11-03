@@ -15,6 +15,8 @@ pnpm build      # 类型检查 + 构建到 dist/
 pnpm preview    # 本地预览构建产物
 ```
 
+> 需要 pnpm ≥ 9（lockfile 为 v9）。项目未固定 `packageManager`，本地直接用你自己装的 pnpm 即可（Intel Mac 用户不受 pnpm 11 无 darwin-x64 二进制的切换问题影响）。
+
 ## 部署（GitHub Pages）
 
 推送到 `main` 分支后，仓库里的 `.github/workflows/deploy.yml` 会自动构建并把 `dist/` 发布到 GitHub Pages。
