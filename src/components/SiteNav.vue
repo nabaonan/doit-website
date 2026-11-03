@@ -4,8 +4,8 @@ import { useTheme } from '../composables/useTheme'
 const { isDark, toggle } = useTheme()
 
 const links = [
-  { href: '#desktop', label: '桌面版' },
-  { href: '#mobile', label: '移动端' },
+  { href: '#desktop', label: '桌面版', mobileHide: true },
+  { href: '#mobile', label: '移动端', mobileHide: true },
   { href: '#features', label: '功能' },
   { href: '#download', label: '下载' },
 ]
@@ -34,7 +34,10 @@ const links = [
           v-for="l in links"
           :key="l.href"
           :href="l.href"
-          class="rounded-full px-2.5 py-1.5 text-sm text-ink-soft transition hover:bg-brand-soft/70 hover:text-ink md:px-3"
+          :class="[
+            'rounded-full px-2.5 py-1.5 text-sm text-ink-soft transition hover:bg-brand-soft/70 hover:text-ink md:px-3',
+            l.mobileHide && 'hidden sm:inline-flex',
+          ]"
         >
           {{ l.label }}
         </a>

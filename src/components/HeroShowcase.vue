@@ -178,10 +178,15 @@ html.dark .hero-blob-b {
   border-color: var(--brand);
 }
 .device {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 .device:hover {
   transform: translateY(-6px);
+}
+
+/* 深色主题：把浅色产品截图反相成暗色效果，与主题保持一致 */
+html.dark .device img {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.95);
 }
 
 @media (max-width: 767px) {

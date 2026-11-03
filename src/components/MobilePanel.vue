@@ -26,16 +26,16 @@ const tabs = [
               <div class="mock-screen">
                 <div class="mock-head">
                   <div class="text-lg font-bold">今天</div>
-                  <div class="text-[11px] text-[#9aa2a0]">11月2日 周一 · 6 项待办</div>
+                  <div class="text-[11px] mock-sub">11月2日 周一 · 6 项待办</div>
                 </div>
 
                 <div class="mock-progress">
                   <div class="flex items-baseline gap-1">
                     <span class="text-lg font-bold">0</span>
-                    <span class="text-[11px] text-[#9aa2a0]">/ 6 · 今日完成</span>
+                    <span class="text-[11px] mock-sub">/ 6 · 今日完成</span>
                   </div>
-                  <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#e3f5ec]">
-                    <div class="h-full w-[18%] rounded-full bg-[#40ce8e]" />
+                  <div class="mock-track mt-2 h-1.5 w-full overflow-hidden rounded-full">
+                    <div class="mock-bar h-full w-[18%] rounded-full" />
                   </div>
                 </div>
 
@@ -203,5 +203,61 @@ const tabs = [
   .phone-shell {
     width: 236px;
   }
+}
+.mock-sub {
+  color: #9aa2a0;
+}
+.mock-track {
+  background: #e3f5ec;
+}
+.mock-bar {
+  background: #40ce8e;
+}
+
+/* 深色主题：手机壳示意跟随主题变暗 */
+html.dark .phone-shell {
+  background: #0d1210;
+}
+html.dark .mock-screen {
+  color: #e9ede9;
+}
+html.dark .mock-progress,
+html.dark .mock-task {
+  background: #1a211c;
+  box-shadow: 0 2px 10px -4px rgba(0, 0, 0, 0.55);
+}
+html.dark .mock-task.done {
+  color: #5a655e;
+}
+html.dark .mock-check {
+  border-color: #3c4a42;
+}
+html.dark .pill-0 {
+  background: #1d3a2b;
+}
+html.dark .pill-1 {
+  background: #202c4c;
+}
+html.dark .pill-2 {
+  background: #2c2440;
+}
+html.dark .mock-tabbar {
+  background: #151b17;
+  border-top-color: #222b25;
+}
+html.dark .mock-tab {
+  color: #77837d;
+}
+html.dark .mock-tab.on {
+  color: #4ed89c;
+}
+html.dark .mock-sub {
+  color: #84918a;
+}
+html.dark .mock-track {
+  background: #173327;
+}
+html.dark .mock-bar {
+  background: #4ed89c;
 }
 </style>
