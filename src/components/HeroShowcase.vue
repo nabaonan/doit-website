@@ -30,7 +30,7 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
 
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3 max-sm:flex-col">
           <a href="#download" class="btn-primary px-6 py-3 text-base max-sm:w-full">下载桌面版</a>
-          <a href="#download" class="btn-secondary px-6 py-3 text-base max-sm:w-full">下载移动端</a>
+          <a href="https://github.com/nabaonan/doit-mobile/releases" target="_blank" rel="noreferrer" class="btn-secondary px-6 py-3 text-base max-sm:w-full">下载移动端</a>
           <a href="#desktop" class="btn px-4 py-3 text-base text-ink-soft hover:text-ink">
             了解详情&nbsp;→
           </a>
@@ -42,7 +42,7 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
       </div>
 
       <div class="hero-stage mt-14 md:mt-20">
-        <div class="hero-in device desktop-device" style="animation-delay: 0.26s">
+        <figure class="hero-in device desktop-device" style="animation-delay: 0.26s">
           <div class="overflow-hidden rounded-2xl border border-line bg-card shadow-2xl">
             <img
               :src="desktopImg"
@@ -57,8 +57,8 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
             <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
             桌面版 · Doit GPUI
           </figcaption>
-        </div>
-        <div class="hero-in device phone-device" style="animation-delay: 0.34s">
+        </figure>
+        <figure class="hero-in device phone-device" style="animation-delay: 0.34s">
           <div class="phone-bezel">
             <img
               :src="mobileImg"
@@ -73,7 +73,7 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
             <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
             移动端 · Doit Mobile
           </figcaption>
-        </div>
+        </figure>
       </div>
     </div>
   </section>
@@ -178,6 +178,7 @@ html.dark .hero-blob-b {
   border-color: var(--brand);
 }
 .device {
+  margin: 0;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 .device:hover {

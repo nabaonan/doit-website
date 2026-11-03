@@ -14,8 +14,8 @@ const cards = [
     title: '移动端 · Doit Mobile',
     desc: '为手机而生的待办：随手记、到点提醒、深色跟随系统。数据留在设备，离线也能记。',
     chips: ['iOS', 'Android', 'Expo 构建'],
-    href: 'https://github.com/nabaonan/doit-mobile',
-    cta: '查看移动端',
+    href: 'https://github.com/nabaonan/doit-mobile/releases',
+    cta: '去下载',
     icon: 'M7 2.5h10a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-15a2 2 0 0 1 2-2ZM11 18.5h2',
   },
 ]
