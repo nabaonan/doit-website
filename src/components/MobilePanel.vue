@@ -31,7 +31,7 @@ const tabs = [
 
                 <div class="mock-progress">
                   <div class="flex items-baseline gap-1">
-                    <span class="text-lg font-bold">0</span>
+                    <span class="text-lg font-bold">1</span>
                     <span class="text-[11px] mock-sub">/ 6 · 今日完成</span>
                   </div>
                   <div class="mock-track mt-2 h-1.5 w-full overflow-hidden rounded-full">
@@ -65,8 +65,7 @@ const tabs = [
             Doit Mobile
           </h2>
           <p class="mt-4 max-w-md leading-relaxed text-ink-soft">
-            为手机而生的待办：今日、记录、统计、设置，四个 Tab 直达主路径。随手记、
-            到点提醒、深色跟随系统，数据留在你自己的设备上。
+            为手机而生的待办：今日、记录、统计、设置，四个 Tab 直达主路径。随手记、到点提醒、深色跟随系统，数据留在你自己的设备上。
           </p>
           <ul class="mt-7 space-y-3">
             <li v-for="f in features" :key="f.t" class="flex gap-3 text-[15px]">
@@ -110,7 +109,8 @@ const tabs = [
 }
 .mock-screen {
   color: #1a1d1b;
-  padding: 18px 14px 12px;
+  /* 底部留白，让 FAB 悬停在空白区，不遮最后一行任务 */
+  padding: 18px 14px 58px;
 }
 .mock-head {
   display: flex;

@@ -24,3 +24,5 @@ dist/
 .trae/
 .warp/
 .windsurf/
+.dsh-vision-router/
+.pnpm-store/

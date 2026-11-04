@@ -99,7 +99,7 @@ const views = [
 .views-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 18px;
 }
 .view-card {
   border: 1px solid var(--line);

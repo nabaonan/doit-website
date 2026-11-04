@@ -31,7 +31,10 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3 max-sm:flex-col">
           <a href="#download" class="btn-primary px-6 py-3 text-base max-sm:w-full">下载桌面版</a>
           <a href="https://github.com/nabaonan/doit-mobile/releases" target="_blank" rel="noreferrer" class="btn-secondary px-6 py-3 text-base max-sm:w-full">下载移动端</a>
-          <a href="#desktop" class="btn px-4 py-3 text-base text-ink-soft hover:text-ink">
+          <a
+            href="#desktop"
+            class="btn px-5 py-3 text-base text-ink-soft hover:bg-brand-soft/60 hover:text-ink"
+          >
             了解详情&nbsp;→
           </a>
         </div>
@@ -43,6 +46,10 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
 
       <div class="hero-stage mt-14 md:mt-20">
         <figure class="hero-in device desktop-device" style="animation-delay: 0.26s">
+          <figcaption class="device-caption">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
+            桌面版 · Doit GPUI
+          </figcaption>
           <div class="overflow-hidden rounded-2xl border border-line bg-card shadow-2xl">
             <img
               :src="desktopImg"
@@ -53,12 +60,12 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
               loading="eager"
             />
           </div>
-          <figcaption class="device-caption">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
-            桌面版 · Doit GPUI
-          </figcaption>
         </figure>
         <figure class="hero-in device phone-device" style="animation-delay: 0.34s">
+          <figcaption class="device-caption">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
+            移动端 · Doit Mobile
+          </figcaption>
           <div class="phone-bezel">
             <img
               :src="mobileImg"
@@ -69,10 +76,6 @@ const platforms = ['macOS', 'Windows', 'Linux', 'iOS', 'Android']
               loading="eager"
             />
           </div>
-          <figcaption class="device-caption">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true"></span>
-            移动端 · Doit Mobile
-          </figcaption>
         </figure>
       </div>
     </div>
@@ -137,19 +140,24 @@ html.dark .hero-blob-b {
 
 .hero-stage {
   position: relative;
-  max-width: 880px;
+  max-width: 1040px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
 }
 .desktop-device {
-  width: min(660px, 94%);
-  margin-left: auto;
+  width: min(620px, 100%);
+  margin: 0;
 }
 .phone-device {
-  position: absolute;
-  left: 0;
-  bottom: 34px;
-  width: 252px;
-  z-index: 2;
+  position: static;
+  width: 246px;
+}
+/* 高于 .device { margin:0 } 的特异性，让手机下沉形成错落构图 */
+.device.phone-device {
+  margin: 96px 0 0;
 }
 .phone-bezel {
   overflow: hidden;
@@ -160,8 +168,9 @@ html.dark .hero-blob-b {
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 .device-caption {
-  margin-top: 14px;
-  display: inline-flex;
+  margin: 0 auto 14px;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 8px;
   font-size: 13px;
@@ -185,25 +194,26 @@ html.dark .hero-blob-b {
   transform: translateY(-6px);
 }
 
-/* 深色主题：把浅色产品截图反相成暗色效果，与主题保持一致 */
+/* 深色主题：产品截图整体反相并旋转色相，得到与主色一致的深色「假暗色截图」。
+   全量 invert(1)+hue-rotate(180deg) 是标准做法：白底变黑底、文字变亮，绿色/青色等
+   强调色经两次映射后基本保持原色调（此前 invert(0.92)+saturate 会产生褪色灰感）。 */
 html.dark .device img {
-  filter: invert(0.92) hue-rotate(180deg) saturate(0.95);
+  filter: invert(1) hue-rotate(180deg);
 }
-
 @media (max-width: 767px) {
   .hero-stage {
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
   }
   .desktop-device {
     width: 100%;
-    margin-left: 0;
   }
   .phone-device {
-    position: static;
     width: 240px;
+  }
+  .device.phone-device {
+    margin-top: 0;
   }
   .device-caption {
     margin-left: auto;
