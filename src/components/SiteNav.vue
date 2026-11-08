@@ -42,7 +42,7 @@ const links = [
           {{ l.label }}
         </a>
         <a
-          href="https://github.com/nabaonan/doit"
+          href="https://github.com/nabaonan/doit-gpui"
           target="_blank"
           rel="noreferrer"
           class="ml-1 flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm text-ink-soft transition hover:bg-brand-soft/70 hover:text-ink"
