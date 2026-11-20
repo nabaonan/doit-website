@@ -1,5 +1,7 @@
 <script setup lang="ts">
-// 深夜青灰展示带：整带采用深色调色板，与页面其余浅色形成对照
+// 主题展示带：配色完全跟随全局主题（CSS 变量），
+// 切到深夜/浅色时这块统计图表同步变色，本身就是主题切换的活演示。
+defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
 const skins = [
@@ -18,10 +20,10 @@ const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
       <div class="reveal theme-band">
         <div class="theme-grid">
           <div class="reveal">
-            <span class="eyebrow">深夜青灰 · 第二套调色板</span>
-            <h2>不是把浅色反一下色。是另一套设计。</h2>
+            <span class="eyebrow">当前主题 · {{ theme === 'dark' ? '深夜青灰' : '薄荷青绿' }}</span>
+            <h2>切一下，连图表都跟着换色。</h2>
             <p>
-              青灰纸底 + 亮薄荷强调，深色的图表气泡、滑动进度、状态栏图标也都跟着换。
+              主题不是把浅色反一下色。热力图的绿阶、滑动进度、状态栏图标都跟着换，
               完成动画还有三款皮肤可选，进度走满的那一刻，想怎么庆祝都行。
             </p>
             <div class="swatches">
@@ -32,15 +34,13 @@ const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
             <p class="theme-tip">
               本站也内置了这套双主题，右上角随时切。
               <button type="button" class="btn btn--primary btn--sm" @click="emit('toggle-theme')">
-                现在就试试深夜
+                现在就试试{{ theme === 'dark' ? '浅色' : '深夜' }}
               </button>
             </p>
           </div>
 
           <div class="reveal theme-slide" aria-hidden="true">
-            <p style="margin: 0 0 0.9rem; color: #a7b8b0; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em">
-              统计 · 深夜青灰
-            </p>
+            <p class="theme-slide-label">统计 · {{ theme === 'dark' ? '深夜青灰' : '薄荷青绿' }}</p>
             <div class="mini-heat">
               <i v-for="(l, i) in heatDark" :key="i" :class="{ on: l > 8 }"></i>
             </div>

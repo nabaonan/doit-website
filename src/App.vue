@@ -38,7 +38,7 @@ useReveal(() => document.getElementById('app'))
     <Products />
     <InteractionDemo />
     <StatsBand />
-    <ThemeBand @toggle-theme="toggleTheme" />
+    <ThemeBand :theme="theme" @toggle-theme="toggleTheme" />
     <SyncBand />
   </main>
   <SiteFooter />

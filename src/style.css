@@ -1155,14 +1155,16 @@ p {
 }
 
 /* ============================================================
-   深夜青灰展示带（整带深色，与页面其余形成对照）
+   主题展示带：配色全部走主题变量，随全局主题实时切换
+   （浅色=薄荷纸感 / 深夜=青灰；这块本身就是主题切换的活演示）
    ============================================================ */
 
 .theme-band {
-  color: #e9f1ec;
+  color: var(--ink);
   background:
-    radial-gradient(120% 140% at 85% 0%, rgba(95, 211, 180, 0.16) 0%, transparent 55%),
-    #111d1b;
+    radial-gradient(120% 140% at 85% 0%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 55%),
+    var(--paper-deep);
+  border: 1px solid var(--line-soft);
   border-radius: 32px;
   overflow: hidden;
 }
@@ -1176,21 +1178,21 @@ p {
 }
 
 .theme-band .eyebrow {
-  background: rgba(95, 211, 180, 0.16);
-  color: #8fe5cc;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
 }
 
 .theme-band .eyebrow::before {
-  background: #5fd3b4;
+  background: var(--accent);
 }
 
 .theme-band h2 {
-  color: #e9f1ec;
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
 .theme-band p {
-  color: #a7b8b0;
+  color: var(--ink-2);
   margin-bottom: 1rem;
 }
 
@@ -1206,9 +1208,9 @@ p {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8rem;
-  color: #a7b8b0;
+  color: var(--ink-2);
   padding: 0.4rem 0.75rem;
-  border: 1px solid rgba(233, 241, 236, 0.14);
+  border: 1px solid var(--line);
   border-radius: 999px;
 }
 
@@ -1218,13 +1220,21 @@ p {
   border-radius: 50%;
 }
 
-/* 深色里的迷你统计后台 */
+/* 主题预览里的迷你统计后台 */
 .theme-slide {
-  background: #162421;
-  border: 1px solid rgba(233, 241, 236, 0.1);
+  background: var(--card);
+  border: 1px solid var(--line-soft);
   border-radius: 20px;
   padding: 1.3rem;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow);
+}
+
+.theme-slide-label {
+  margin: 0 0 0.9rem;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .theme-slide .mini-heat {
@@ -1237,13 +1247,13 @@ p {
 .theme-slide .mini-heat i {
   aspect-ratio: 1;
   border-radius: 4px;
-  background: #22322c;
+  background: var(--heat-0);
 }
 
-.theme-slide .mini-heat i:nth-child(3n) { background: #244038; }
-.theme-slide .mini-heat i:nth-child(5n) { background: #2e6352; }
-.theme-slide .mini-heat i:nth-child(7n) { background: #3f9276; }
-.theme-slide .mini-heat i:nth-child(11) { background: #5fd3b4; }
+.theme-slide .mini-heat i:nth-child(3n) { background: var(--heat-1); }
+.theme-slide .mini-heat i:nth-child(5n) { background: var(--heat-2); }
+.theme-slide .mini-heat i:nth-child(7n) { background: var(--heat-3); }
+.theme-slide .mini-heat i.on { background: var(--heat-4); }
 
 .theme-slide .mini-bars {
   display: flex;
@@ -1255,18 +1265,18 @@ p {
 .theme-slide .mini-bars i {
   flex: 1;
   border-radius: 5px 5px 2px 2px;
-  background: linear-gradient(180deg, #3f9276, #244038);
+  background: linear-gradient(180deg, var(--heat-3), var(--heat-1));
 }
 
 .theme-slide .mini-bars i.peak {
-  background: linear-gradient(180deg, #5fd3b4, #2e6352);
+  background: linear-gradient(180deg, var(--heat-4), var(--heat-2));
 }
 
 .theme-tip {
   margin-top: 1.4rem;
   font-size: 0.85rem;
-  color: #7c8e86;
-  border-top: 1px dashed rgba(233, 241, 236, 0.16);
+  color: var(--ink-3);
+  border-top: 1px dashed var(--line);
   padding-top: 1rem;
 }
 
