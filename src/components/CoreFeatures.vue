@@ -3,33 +3,37 @@
 // 全部用 APP 真机运行截图，不是示意图。深色模式换对应深夜真机图。
 defineProps<{ theme: 'light' | 'dark' }>()
 
+// 图片路径必须带 base 前缀：GitHub Pages 部署在 /doit-website/ 子路径下，
+// 写死 /shots/... 会被当成域名根路径导致 404。
+const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
+
 const features = [
   {
     name: '分类',
     desc: '全部、工作、采购、阅读、运动。一件事归到哪一眼清楚，切一下只看这一摊。',
-    light: '/shots/home_light.png',
-    dark: '/shots/home_dark.png',
+    light: shot('home_light'),
+    dark: shot('home_dark'),
     alt: 'doit 首页：顶部分类标签与今日待办列表',
   },
   {
     name: '子任务',
     desc: '大事先拆成几步。子任务全部打勾，父任务自动完成，不用你再点第二次。',
-    light: '/shots/home_light.png',
-    dark: '/shots/home_dark.png',
+    light: shot('home_light'),
+    dark: shot('home_dark'),
     alt: 'doit 首页：父任务下展开的子任务清单，全部完成自动打勾',
   },
   {
     name: '统计',
     desc: '热力图看坚持，环形图看分布，折线看节奏。近一周、近一月、近一年翻着看。',
-    light: '/shots/stats_cards.png',
-    dark: '/shots/stats_cards_dark.png',
+    light: shot('stats_cards'),
+    dark: shot('stats_cards_dark'),
     alt: 'doit 统计页：热力图、环形图与折线图',
   },
   {
     name: '云同步',
     desc: '开启 WebDAV，手机和桌面共用一份备份。双向合并、本地优先，谁改的都不丢。',
-    light: '/shots/settings_tab_sync.png',
-    dark: '/shots/settings_tab_sync_dark.png',
+    light: shot('settings_tab_sync'),
+    dark: shot('settings_tab_sync_dark'),
     alt: 'doit 设置页：WebDAV 自动同步开关',
   },
 ]

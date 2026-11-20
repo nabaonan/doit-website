@@ -5,6 +5,9 @@
 defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
+// 图片路径带 base 前缀：兼容 GitHub Pages 的 /doit-website/ 子路径部署
+const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
+
 const skins = [
   { label: '绿色生长', c: 'var(--skin-green)' },
   { label: '火花四溅', c: 'var(--skin-spark)' },
@@ -42,7 +45,7 @@ const skins = [
               <div class="theme-notch"></div>
               <img
                 class="theme-shot"
-                :src="theme === 'dark' ? '/shots/home_dark.png' : '/shots/home_light.png'"
+                :src="theme === 'dark' ? shot('home_dark') : shot('home_light')"
                 :alt="theme === 'dark' ? 'doit 深夜主题首页' : 'doit 浅色主题首页'"
                 width="450"
                 height="1000"

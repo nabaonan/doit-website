@@ -6,6 +6,9 @@ import { Smartphone, Monitor } from 'lucide-vue-next'
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
 
+// 图片路径带 base 前缀：兼容 GitHub Pages 的 /doit-website/ 子路径部署
+const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
+
 // 示例图跟随站点主题：深色模式展示两端真实的深夜界面截图
 defineProps<{ theme: 'light' | 'dark' }>()
 </script>
@@ -36,7 +39,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
           <div class="product-device">
             <div class="phone-frame" aria-label="doit 手机端真机截图">
               <div class="phone-notch"></div>
-              <img :src="theme === 'dark' ? '/shots/home_dark.png' : '/shots/home_light.png'" :alt="theme === 'dark' ? 'doit Android 深夜主题首页：分类标签、今日待办与进度环' : 'doit Android 首页：分类标签、今日待办与进度环'" width="450" height="1000" loading="lazy" decoding="async" />
+              <img :src="theme === 'dark' ? shot('home_dark') : shot('home_light')" :alt="theme === 'dark' ? 'doit Android 深夜主题首页：分类标签、今日待办与进度环' : 'doit Android 首页：分类标签、今日待办与进度环'" width="450" height="1000" loading="lazy" decoding="async" />
               <div class="phone-bar"></div>
             </div>
           </div>
@@ -68,7 +71,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
                 <span class="desk-title">doit · 今日</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? '/shots/desk_today_dark.png' : '/shots/desk_today.png'" :alt="theme === 'dark' ? 'doit 桌面端深夜主题真实运行截图：分类标签、任务列表与子任务' : 'doit 桌面端真实运行截图：分类标签、任务列表与子任务'" width="1400" height="885" loading="lazy" decoding="async" />
+              <img :src="theme === 'dark' ? shot('desk_today_dark') : shot('desk_today')" :alt="theme === 'dark' ? 'doit 桌面端深夜主题真实运行截图：分类标签、任务列表与子任务' : 'doit 桌面端真实运行截图：分类标签、任务列表与子任务'" width="1400" height="885" loading="lazy" decoding="async" />
             </div>
           </div>
 
