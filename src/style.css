@@ -1220,58 +1220,6 @@ p {
   border-radius: 50%;
 }
 
-/* 主题预览里的迷你统计后台 */
-.theme-slide {
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  border-radius: 20px;
-  padding: 1.3rem;
-  box-shadow: var(--shadow);
-}
-
-.theme-slide-label {
-  margin: 0 0 0.9rem;
-  color: var(--ink-3);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.theme-slide .mini-heat {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 1rem;
-}
-
-.theme-slide .mini-heat i {
-  aspect-ratio: 1;
-  border-radius: 4px;
-  background: var(--heat-0);
-}
-
-.theme-slide .mini-heat i:nth-child(3n) { background: var(--heat-1); }
-.theme-slide .mini-heat i:nth-child(5n) { background: var(--heat-2); }
-.theme-slide .mini-heat i:nth-child(7n) { background: var(--heat-3); }
-.theme-slide .mini-heat i.on { background: var(--heat-4); }
-
-.theme-slide .mini-bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 72px;
-}
-
-.theme-slide .mini-bars i {
-  flex: 1;
-  border-radius: 5px 5px 2px 2px;
-  background: linear-gradient(180deg, var(--heat-3), var(--heat-1));
-}
-
-.theme-slide .mini-bars i.peak {
-  background: linear-gradient(180deg, var(--heat-4), var(--heat-2));
-}
-
 .theme-tip {
   margin-top: 1.4rem;
   font-size: 0.85rem;
@@ -1299,23 +1247,6 @@ p {
   flex-wrap: wrap;
   gap: clamp(1.6rem, 4vw, 3rem);
   align-items: center;
-}
-
-.sync-visual {
-  flex: 0 0 auto;
-  width: clamp(150px, 24vw, 220px);
-  display: grid;
-  place-items: center;
-}
-
-.sync-visual svg {
-  width: 100%;
-  height: auto;
-}
-
-.sync-cloud {
-  color: var(--accent);
-  fill: var(--accent-soft);
 }
 
 .sync-copy {

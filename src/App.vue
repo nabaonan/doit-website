@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import SiteNav from './components/SiteNav.vue'
 import Hero from './components/Hero.vue'
 import Products from './components/Products.vue'
+import CoreFeatures from './components/CoreFeatures.vue'
 import InteractionDemo from './components/InteractionDemo.vue'
 import StatsBand from './components/StatsBand.vue'
 import ThemeBand from './components/ThemeBand.vue'
@@ -36,6 +37,7 @@ useReveal(() => document.getElementById('app'))
   <main>
     <Hero />
     <Products />
+    <CoreFeatures />
     <InteractionDemo />
     <StatsBand />
     <ThemeBand :theme="theme" @toggle-theme="toggleTheme" />

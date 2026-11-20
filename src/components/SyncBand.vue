@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Cloud, RefreshCw, Check } from 'lucide-vue-next'
+import { CloudSync } from 'lucide-vue-next'
 
-// WebDAV 双向同步带：沿用 APP 顶部云按钮的四种状态文案
+// WebDAV 双向同步带：单个云同步图标，沿用 APP 顶部云按钮的状态文案
 const states = [
   { label: '已同步', cls: 'ok' },
   { label: '有待同步', cls: 'warn' },
@@ -15,11 +15,7 @@ const states = [
     <div class="container">
       <div class="reveal sync-card">
         <div class="sync-visual" aria-hidden="true">
-          <Cloud class="sync-cloud" :size="168" :stroke-width="1.5" />
-          <span class="sync-badge">
-            <Check :size="34" :stroke-width="3" />
-          </span>
-          <RefreshCw class="sync-refresh" :size="26" :stroke-width="2.2" />
+          <CloudSync class="sync-icon" :size="176" :stroke-width="1.35" />
         </div>
 
         <div class="sync-copy">
@@ -49,43 +45,16 @@ code {
 }
 
 .sync-visual {
-  position: relative;
-}
-
-.sync-cloud {
-  color: var(--accent);
-  fill: var(--accent-soft);
-}
-
-.sync-badge {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--accent-ink);
-  color: #fff;
   display: grid;
   place-items: center;
-  box-shadow: var(--shadow);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  flex: none;
 }
 
-[data-theme='dark'] .sync-badge {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-.sync-refresh {
-  position: absolute;
-  top: 4px;
-  right: 14%;
+.sync-icon {
   color: var(--accent-ink);
-}
-
-@media (max-width: 560px) {
-  .sync-refresh {
-    right: 8%;
-  }
 }
 </style>

@@ -5,6 +5,7 @@ const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
 const LINKS = [
   { href: '#products', label: '双端' },
+  { href: '#features', label: '功能' },
   { href: '#interact', label: '交互' },
   { href: '#stats', label: '统计' },
   { href: '#theme', label: '主题' },

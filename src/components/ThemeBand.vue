@@ -1,6 +1,7 @@
 <script setup lang="ts">
-// 主题展示带：配色完全跟随全局主题（CSS 变量），
-// 切到深夜/浅色时这块统计图表同步变色，本身就是主题切换的活演示。
+// 主题展示带：左侧文案 + 右侧真机截图对照。
+// 主主题切到深夜时展示深夜真机图，切回浅色展示浅色真机图，
+// 这块本身就是主题切换的活演示。
 defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
@@ -9,9 +10,6 @@ const skins = [
   { label: '火花四溅', c: 'var(--skin-spark)' },
   { label: '蓝色流水', c: 'var(--skin-water)' },
 ]
-
-const heatDark = Array.from({ length: 42 }, (_, i) => (i * 7) % 11)
-const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
 </script>
 
 <template>
@@ -21,9 +19,9 @@ const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
         <div class="theme-grid">
           <div class="reveal">
             <span class="eyebrow">当前主题 · {{ theme === 'dark' ? '深夜青灰' : '薄荷青绿' }}</span>
-            <h2>切一下，连图表都跟着换色。</h2>
+            <h2>切一下，整个界面都换色。</h2>
             <p>
-              主题不是把浅色反一下色。热力图的绿阶、滑动进度、状态栏图标都跟着换，
+              主题不是把浅色反一下色。热力图的绿阶、状态栏图标、卡片底色都按当前主题重新取色，
               完成动画还有三款皮肤可选，进度走满的那一刻，想怎么庆祝都行。
             </p>
             <div class="swatches">
@@ -32,7 +30,7 @@ const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
               </span>
             </div>
             <p class="theme-tip">
-              本站也内置了这套双主题，右上角随时切。
+              右边就是现在的主题。本站也内置了它，右上角随时切。
               <button type="button" class="btn btn--primary btn--sm" @click="emit('toggle-theme')">
                 现在就试试{{ theme === 'dark' ? '浅色' : '深夜' }}
               </button>
@@ -40,16 +38,50 @@ const bars = [36, 58, 44, 72, 61, 88, 52, 66, 78, 46, 90, 57]
           </div>
 
           <div class="reveal theme-slide" aria-hidden="true">
-            <p class="theme-slide-label">统计 · {{ theme === 'dark' ? '深夜青灰' : '薄荷青绿' }}</p>
-            <div class="mini-heat">
-              <i v-for="(l, i) in heatDark" :key="i" :class="{ on: l > 8 }"></i>
-            </div>
-            <div class="mini-bars">
-              <i v-for="(h, i) in bars" :key="i" :style="{ height: h + '%' }" :class="{ peak: h >= 78 }"></i>
-            </div>
+            <img
+              class="theme-shot"
+              :src="theme === 'dark' ? '/shots/home_dark.png' : '/shots/home_light.png'"
+              :alt="theme === 'dark' ? 'doit 深夜主题首页' : 'doit 浅色主题首页'"
+              width="450"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.theme-slide {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  max-height: 470px;
+  overflow: hidden;
+}
+
+.theme-shot {
+  width: auto;
+  height: 460px;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: top;
+  display: block;
+}
+
+@media (max-width: 620px) {
+  .theme-slide {
+    max-height: 380px;
+  }
+  .theme-shot {
+    height: 380px;
+  }
+}
+</style>
