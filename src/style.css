@@ -1303,18 +1303,9 @@ p {
   height: auto;
 }
 
-.cloud-body {
+.sync-cloud {
+  color: var(--accent);
   fill: var(--accent-soft);
-  stroke: var(--accent);
-  stroke-width: 2.4;
-}
-
-.cloud-check {
-  fill: none;
-  stroke: var(--accent-ink);
-  stroke-width: 3.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .sync-copy {

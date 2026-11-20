@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { ArrowRight, Monitor } from 'lucide-vue-next'
 
 const drawn = ref(false)
 
@@ -56,9 +57,7 @@ onMounted(() => {
             target="_blank"
             rel="noopener"
           >
-            <svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+            <ArrowRight class="btn-ico" :size="18" aria-hidden="true" />
             下载 Android
           </a>
           <a
@@ -67,10 +66,7 @@ onMounted(() => {
             target="_blank"
             rel="noopener"
           >
-            <svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="4.5" width="18" height="12" rx="2.4" />
-              <path d="M9 20h6M12 16.5V20" />
-            </svg>
+            <Monitor class="btn-ico" :size="18" aria-hidden="true" />
             下载桌面版
           </a>
         </div>

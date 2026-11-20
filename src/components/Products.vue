@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Smartphone, Monitor } from 'lucide-vue-next'
+
 // 双端对照：同一份数据，两个入口
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
@@ -28,10 +30,7 @@ const rows = [
         <!-- 手机端 -->
         <article class="product reveal">
           <span class="product-tag">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="7" y="2.5" width="10" height="19" rx="2.6" />
-              <path d="M11 18.5h2" />
-            </svg>
+            <Smartphone class="ico" :size="15" aria-hidden="true" />
             手机端 · Android
           </span>
           <h3>通勤路上，随手记</h3>
@@ -62,10 +61,7 @@ const rows = [
         <!-- 桌面端 -->
         <article class="product reveal">
           <span class="product-tag">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="4.5" width="18" height="12" rx="2.4" />
-              <path d="M9 20h6M12 16.5V20" />
-            </svg>
+            <Monitor class="ico" :size="15" aria-hidden="true" />
             桌面端 · macOS / Windows / Linux
           </span>
           <h3>坐到电脑前，沉浸敲完</h3>

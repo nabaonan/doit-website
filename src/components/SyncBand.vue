@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Cloud, RefreshCw, Check } from 'lucide-vue-next'
+
 // WebDAV 双向同步带：沿用 APP 顶部云按钮的四种状态文案
 const states = [
   { label: '已同步', cls: 'ok' },
@@ -13,19 +15,11 @@ const states = [
     <div class="container">
       <div class="reveal sync-card">
         <div class="sync-visual" aria-hidden="true">
-          <svg viewBox="0 0 160 120" fill="none">
-            <path
-              class="cloud-body"
-              d="M48 96c-16 0-28-11-28-25 0-12 9-22 21-24a30 30 0 0155-9c12 2 20 12 20 24 0 13-11 24-25 24z"
-            />
-            <path class="cloud-check" d="M66 84l9 9 18-20" />
-            <path
-              d="M40 34l10 10M34 28v10M50 28h10"
-              stroke="var(--accent)"
-              stroke-width="2.6"
-              stroke-linecap="round"
-            />
-          </svg>
+          <Cloud class="sync-cloud" :size="168" :stroke-width="1.5" />
+          <span class="sync-badge">
+            <Check :size="34" :stroke-width="3" />
+          </span>
+          <RefreshCw class="sync-refresh" :size="26" :stroke-width="2.2" />
         </div>
 
         <div class="sync-copy">
@@ -52,5 +46,46 @@ code {
   background: var(--accent-soft);
   padding: 0.05em 0.35em;
   border-radius: 6px;
+}
+
+.sync-visual {
+  position: relative;
+}
+
+.sync-cloud {
+  color: var(--accent);
+  fill: var(--accent-soft);
+}
+
+.sync-badge {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+}
+
+[data-theme='dark'] .sync-badge {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.sync-refresh {
+  position: absolute;
+  top: 4px;
+  right: 14%;
+  color: var(--accent-ink);
+}
+
+@media (max-width: 560px) {
+  .sync-refresh {
+    right: 8%;
+  }
 }
 </style>

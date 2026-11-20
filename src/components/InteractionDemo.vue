@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { Activity, ListTree, Flag } from 'lucide-vue-next'
 
 // —— 右滑完成 demo：进度跟手生长，滑过 55% 松手即成 —
 const state = reactive({
@@ -131,10 +132,7 @@ const prios = [
       <div class="features" style="margin-top: clamp(1.25rem, 3vw, 2rem)">
         <article class="feature reveal">
           <span class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-              <path d="M5.8 6.9a8.5 8.5 0 110 10.2M12 4.5a7.5 7.5 0 017.5 7.5" stroke-dasharray="1.2 3.2" />
-              <path d="M12 8v4l2.6 1.6" />
-            </svg>
+            <Activity :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[0].title }}</h4>
           <p>{{ features[0].desc }}</p>
@@ -149,9 +147,7 @@ const prios = [
 
         <article class="feature reveal">
           <span class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v13M7.5 13.5L12 18l4.5-4.5" />
-            </svg>
+            <ListTree :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[1].title }}</h4>
           <p>{{ features[1].desc }}</p>
@@ -164,10 +160,7 @@ const prios = [
 
         <article class="feature reveal">
           <span class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M8 4v16M4 8v8" />
-              <path d="M15 5l4 14M19 5h-4M12 4v16" />
-            </svg>
+            <Flag :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[2].title }}</h4>
           <p>{{ features[2].desc }}</p>
