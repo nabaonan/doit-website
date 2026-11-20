@@ -29,12 +29,12 @@ const skins = [
                 <span class="dot" :style="{ background: s.c }"></span>{{ s.label }}
               </span>
             </div>
-            <p class="theme-tip">
-              右边就是现在的主题。本站也内置了它，右上角随时切。
-              <button type="button" class="btn btn--primary btn--sm" @click="emit('toggle-theme')">
+            <div class="theme-tip">
+              <p>右边就是现在的主题。本站也内置了它，右上角随时切。</p>
+              <button type="button" class="btn btn--primary" @click="emit('toggle-theme')">
                 现在就试试{{ theme === 'dark' ? '浅色' : '深夜' }}
               </button>
-            </p>
+            </div>
           </div>
 
           <div class="reveal theme-slide" aria-hidden="true">
