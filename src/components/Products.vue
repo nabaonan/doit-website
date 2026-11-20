@@ -2,6 +2,7 @@
 import { Smartphone, Monitor } from 'lucide-vue-next'
 
 // 双端对照：同一份数据，两个入口。展示图用真实运行截图 + CSS 模拟真机边框。
+// 桌面端从应用真实渲染截取亮/暗两张，裁掉原生标题栏只留应用内容，再套官网统一的假边框。
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
 
@@ -67,7 +68,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
                 <span class="desk-title">doit · 今日</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? '/shots/desk_today_dark.png' : '/shots/desk_today.png'" :alt="theme === 'dark' ? 'doit 桌面端深夜主题今日待办：分类标签、任务列表与子任务' : 'doit 桌面端今日待办：分类标签、任务列表与子任务'" width="1400" height="897" loading="lazy" decoding="async" />
+              <img :src="theme === 'dark' ? '/shots/desk_today_dark.png' : '/shots/desk_today.png'" :alt="theme === 'dark' ? 'doit 桌面端深夜主题真实运行截图：分类标签、任务列表与子任务' : 'doit 桌面端真实运行截图：分类标签、任务列表与子任务'" width="1400" height="885" loading="lazy" decoding="async" />
             </div>
           </div>
 
