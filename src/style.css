@@ -615,87 +615,10 @@ p {
 /* 设备外壳：纯 CSS 暗示手机/电脑，不作伪截图 */
 .product-device {
   margin-block: 1.2rem 1.6rem;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.device-phone {
-  width: 172px;
-  margin-inline: auto;
-  border: 5px solid var(--paper-deep);
-  border-radius: 30px;
-  padding: 10px 9px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  transform: translateX(-2px);
-}
-
-.device-desk {
-  border-radius: 14px 14px 4px 4px;
-  padding: 14px 14px 10px;
-  background: var(--card);
-}
-
-.mini-row {
-  display: grid;
-  grid-template-columns: 14px 1fr auto;
+  min-height: 340px;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 7px 0;
-  border-top: 1px solid var(--line-soft);
-  font-size: 0.74rem;
-  color: var(--ink);
-}
-
-.mini-row:first-child {
-  border-top: 0;
-}
-
-.mini-row .c {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  border: 1.5px solid var(--line);
-}
-
-.mini-row.done .c {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
-  position: relative;
-}
-
-.mini-row.done .c::after {
-  content: '';
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  width: 4px;
-  height: 7px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.mini-row .t.done {
-  color: var(--ink-3);
-  text-decoration: line-through;
-  text-decoration-color: var(--strike);
-  text-decoration-thickness: 1.5px;
-}
-
-.mini-row .k {
-  font-size: 0.64rem;
-  font-weight: 600;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-}
-
-.device-meta {
-  padding: 0 2px 6px;
-  font-size: 0.66rem;
-  color: var(--ink-3);
+  justify-content: center;
 }
 
 .product ul {

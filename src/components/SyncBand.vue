@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { CloudSync } from 'lucide-vue-next'
+import { CloudCheck } from 'lucide-vue-next'
 
-// WebDAV 双向同步带：单个云同步图标，沿用 APP 顶部云按钮的状态文案
+// WebDAV 双向同步带：完整的云 + 中间对钩，沿用 APP 顶部云按钮的状态文案
 const states = [
   { label: '已同步', cls: 'ok' },
   { label: '有待同步', cls: 'warn' },
@@ -15,7 +15,7 @@ const states = [
     <div class="container">
       <div class="reveal sync-card">
         <div class="sync-visual" aria-hidden="true">
-          <CloudSync class="sync-icon" :size="176" :stroke-width="1.35" />
+          <CloudCheck class="sync-icon" :size="176" :stroke-width="1.5" />
         </div>
 
         <div class="sync-copy">

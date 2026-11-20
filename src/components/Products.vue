@@ -1,17 +1,9 @@
 <script setup lang="ts">
 import { Smartphone, Monitor } from 'lucide-vue-next'
 
-// 双端对照：同一份数据，两个入口
+// 双端对照：同一份数据，两个入口。展示图用真实运行截图 + CSS 模拟真机边框。
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
-
-const rows = [
-  { t: '买早餐回来', done: true },
-  { t: '写周报提纲', done: false, k: '紧急', c: '#de5b55' },
-  { t: '提交报销单', done: false, k: '普通', c: '#4a86d6' },
-  { t: '遛狗子', done: true },
-  { t: '订下周五机票', done: false, k: '低', c: '#4fbf9e' },
-]
 </script>
 
 <template>
@@ -38,13 +30,10 @@ const rows = [
           <p class="ver">正式版 <b>v1.0.13</b> · 开源</p>
 
           <div class="product-device">
-            <div class="device-phone" aria-hidden="true">
-              <p class="device-meta">今日 · 已勾 2 / 5</p>
-              <div v-for="(r, i) in rows" :key="i" class="mini-row" :class="{ done: r.done }">
-                <span class="c"></span>
-                <span class="t" :class="{ done: r.done }">{{ r.t }}</span>
-                <span v-if="r.k" class="k" :style="{ background: r.c, color: '#fff' }">{{ r.k }}</span>
-              </div>
+            <div class="phone-frame" aria-label="doit 手机端真机截图">
+              <div class="phone-notch"></div>
+              <img src="/shots/home_light.png" alt="doit Android 首页：分类标签、今日待办与进度环" width="450" height="1000" loading="lazy" decoding="async" />
+              <div class="phone-bar"></div>
             </div>
           </div>
 
@@ -69,16 +58,13 @@ const rows = [
           <p class="ver">正式版 <b>v0.1.3</b></p>
 
           <div class="product-device">
-            <div class="device-desk" aria-hidden="true">
-              <p class="device-meta" style="display: flex; justify-content: space-between">
-                <span>今日 · 7 / 9</span>
-                <span style="color: var(--accent-ink)">已同步 ✓</span>
-              </p>
-              <div v-for="(r, i) in rows" :key="i" class="mini-row" :class="{ done: r.done }">
-                <span class="c"></span>
-                <span class="t" :class="{ done: r.done }">{{ r.t }}</span>
-                <span v-if="r.k" class="k" :style="{ background: r.c, color: '#fff' }">{{ r.k }}</span>
+            <div class="desk-frame" aria-label="doit 桌面端真机截图">
+              <div class="desk-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="desk-title">doit · 今日</span>
+                <span class="dots"></span>
               </div>
+              <img src="/shots/desk_today.png" alt="doit 桌面端今日待办：分类标签、任务列表与子任务" width="1400" height="897" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -112,5 +98,90 @@ code {
   .hide-mobile {
     display: initial;
   }
+}
+
+/* —— 真机边框：手机 —— */
+.phone-frame {
+  position: relative;
+  width: 176px;
+  aspect-ratio: 450 / 956;
+  margin-inline: auto;
+  border: 6px solid var(--paper-deep);
+  border-radius: 32px;
+  background: var(--card);
+  box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+.phone-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.phone-notch {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 13px;
+  border-radius: 999px;
+  background: var(--paper-deep);
+  z-index: 2;
+}
+.phone-bar {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--ink-3);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+/* —— 真机边框：桌面窗口 —— */
+.desk-frame {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.desk-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 10px 13px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line-soft);
+}
+.desk-bar .dots {
+  display: flex;
+  gap: 6px;
+}
+.desk-bar .dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  opacity: 0.45;
+}
+.desk-bar .dots i:nth-child(1) { background: #e06b62; opacity: 0.9; }
+.desk-bar .dots i:nth-child(2) { background: #e0b34f; opacity: 0.9; }
+.desk-bar .dots i:nth-child(3) { background: #5cbf87; opacity: 0.9; }
+.desk-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.desk-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 </style>

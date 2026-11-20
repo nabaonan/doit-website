@@ -11,8 +11,8 @@ const features = [
   {
     name: '子任务',
     desc: '大事先拆成几步。子任务全部打勾，父任务自动完成，不用你再点第二次。',
-    img: '/shots/subtasks.png',
-    alt: 'doit 任务详情：父任务下展开的子任务清单',
+    img: '/shots/home_light.png',
+    alt: 'doit 首页：父任务下展开的子任务清单，全部完成自动打勾',
   },
   {
     name: '统计',
@@ -41,7 +41,9 @@ const features = [
       <div class="feature-gallery">
         <article v-for="(f, i) in features" :key="f.name" class="feature-item reveal" :class="`feature-item--${i}`">
           <div class="phone">
+            <div class="phone-notch"></div>
             <img :src="f.img" :alt="f.alt" width="450" height="1000" loading="lazy" decoding="async" />
+            <div class="phone-bar"></div>
           </div>
           <h3 class="feature-name">{{ f.name }}</h3>
           <p class="feature-desc">{{ f.desc }}</p>
@@ -72,10 +74,10 @@ const features = [
 
 .phone {
   position: relative;
-  border-radius: 26px;
+  border-radius: 30px;
   overflow: hidden;
   background: var(--card);
-  border: 1px solid var(--line-soft);
+  border: 6px solid var(--paper-deep);
   box-shadow: var(--shadow);
   aspect-ratio: 450 / 1000;
 }
@@ -84,7 +86,33 @@ const features = [
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   display: block;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%;
+  height: 3.2%;
+  border-radius: 999px;
+  background: var(--paper-deep);
+  z-index: 2;
+}
+
+.phone-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 0.9%;
+  border-radius: 999px;
+  background: var(--ink-3);
+  opacity: 0.5;
+  z-index: 2;
 }
 
 .feature-name {
