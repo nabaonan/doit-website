@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 // 顶部导航：logo + 锚点 + 「浅色/深夜」分段开关 + 下载
 defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
@@ -11,6 +13,44 @@ const LINKS = [
   { href: '#theme', label: '主题' },
   { href: '#sync', label: '同步' },
 ]
+
+// —— 滚动联动：当前视口所在的区块对应导航高亮 ——
+const activeHref = ref<string>('')
+let raf = 0
+
+function updateActive() {
+  // 激活线设在视口上方 32% 处，跟随滚动找到最后一个越过该线的区块
+  const line = window.innerHeight * 0.32
+  let current = ''
+  for (const l of LINKS) {
+    const el = document.querySelector(l.href) as HTMLElement | null
+    if (el && el.getBoundingClientRect().top <= line) current = l.href
+  }
+  // 滚到页面底部时强制点亮最后一项（避免末段区块太矮越不过激活线）
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+    current = LINKS[LINKS.length - 1].href
+  }
+  activeHref.value = current
+}
+
+function onScroll() {
+  if (raf) return
+  raf = requestAnimationFrame(() => {
+    updateActive()
+    raf = 0
+  })
+}
+
+onMounted(() => {
+  updateActive()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', onScroll)
+  if (raf) cancelAnimationFrame(raf)
+})
 </script>
 
 <template>
@@ -28,7 +68,11 @@ const LINKS = [
       <nav aria-label="页内导航">
         <ul class="nav-links">
           <li v-for="l in LINKS" :key="l.href">
-            <a :href="l.href">{{ l.label }}</a>
+            <a
+              :href="l.href"
+              :class="{ active: activeHref === l.href }"
+              :aria-current="activeHref === l.href ? 'location' : undefined"
+            >{{ l.label }}</a>
           </li>
         </ul>
       </nav>
