@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { CloudCheck } from 'lucide-vue-next'
-
-// WebDAV 双向同步带：完整的云 + 中间对钩，沿用 APP 顶部云按钮的状态文案
+// WebDAV 双向同步带：完整闭合的云 + 中间对钩（自绘 SVG，lucide 的 CloudCheck 云是敞口的）
+// 沿用 APP 顶部云按钮的状态文案
 const states = [
   { label: '已同步', cls: 'ok' },
   { label: '有待同步', cls: 'warn' },
@@ -15,7 +14,14 @@ const states = [
     <div class="container">
       <div class="reveal sync-card">
         <div class="sync-visual" aria-hidden="true">
-          <CloudCheck class="sync-icon" :size="176" :stroke-width="1.5" />
+          <!-- 完整闭合的云 + 中间对钩：云身用一条闭合路径，对钩独立躺在其内部 -->
+          <svg class="sync-icon" viewBox="0 0 120 120" fill="none">
+            <path
+              class="cloud-body"
+              d="M84 88H40a24 24 0 0 1-1.2-48 32 32 0 0 1 60.6 6.4A19.8 19.8 0 0 1 84 88Z"
+            />
+            <path class="cloud-check" d="M50 63l11 11 22-25" />
+          </svg>
         </div>
 
         <div class="sync-copy">
@@ -55,6 +61,23 @@ code {
 }
 
 .sync-icon {
-  color: var(--accent-ink);
+  width: 176px;
+  height: 176px;
+}
+
+.cloud-body {
+  stroke: var(--accent-ink);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.cloud-check {
+  stroke: var(--accent-ink);
+  stroke-width: 6.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 </style>

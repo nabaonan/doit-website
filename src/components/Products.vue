@@ -155,7 +155,7 @@ code {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 10px 13px;
+  padding: 6px 13px;
   background: var(--surface-2);
   border-bottom: 1px solid var(--line-soft);
 }
@@ -164,8 +164,8 @@ code {
   gap: 6px;
 }
 .desk-bar .dots i {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--ink-3);
   opacity: 0.45;
