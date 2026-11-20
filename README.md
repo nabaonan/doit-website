@@ -1,9 +1,10 @@
 # Doit 官网（doit-website）
 
-[Doit](https://github.com/nabaonan/doit) 极简待办应用的官方网站，介绍桌面端 **Doit GPUI** 与移动端 **Doit Mobile**。
+[doit-apk](https://github.com/nabaonan/doit-apk)（Android 待办）与 [doit-desktop](https://github.com/nabaonan/doit-desktop)（桌面端）的官方主页。
 
-- 纯静态单页：Vite + Vue 3 + TypeScript + UnoCSS
-- 浅色 / 深色双主题，附首屏防闪烁处理
+- 纯静态单页：Vite + Vue 3 + TypeScript
+- 配色取色自 APP 设计令牌 `DoitPalette`（浅色薄荷 Mint / 深色深夜青灰 Midnight），十六进制原样使用，整站明暗双主题实时切换
+- 整站词汇沿用 APP 自己的「圆 + 勾」图标语汇与产品口气文案：巨型青绿圈打勾、右滑完成交互 demo、热力图/环形/折线迷你视觉、WebDAV 双向同步带
 - 产物使用相对路径（`base: './'`），可部署到 GitHub Pages 任意子路径
 
 ## 本地开发
@@ -11,11 +12,9 @@
 ```bash
 pnpm install
 pnpm dev        # 开发预览
-pnpm build      # 类型检查 + 构建到 dist/
+pnpm build      # 构建到 dist/
 pnpm preview    # 本地预览构建产物
 ```
-
-> 需要 pnpm ≥ 9（lockfile 为 v9）。项目未固定 `packageManager`，本地直接用你自己装的 pnpm 即可（Intel Mac 用户不受 pnpm 11 无 darwin-x64 二进制的切换问题影响）。
 
 ## 部署（GitHub Pages）
 
@@ -30,14 +29,11 @@ pnpm preview    # 本地预览构建产物
 
 ```
 doit-website/
-├── .github/workflows/deploy.yml   # GitHub Pages 自动部署
+├── .github/workflows/deploy.yml   # GitHub Pages 自动部署（push main 触发）
 ├── public/                        # favicon、robots.txt、.nojekyll
 ├── src/
-│   ├── assets/                    # 产品真实截图（来自 doit-gpui / doit-mobile）
-│   ├── components/                # 导航、首屏装置、PC/移动章节、功能、下载、页脚
-│   ├── composables/useTheme.ts    # 浅深主题（跟随系统 + 本地记忆）
-│   ├── App.vue / main.ts / style.css / uno.config.ts
+│   ├── components/                # 顶栏、hero、双端对照、交互 demo、统计、主题带、同步、页脚
+│   ├── composables/useReveal.ts   # IntersectionObserver 一次性滚动入场
+│   ├── App.vue / main.ts / style.css  # 根组件、入口、设计令牌（明/暗两套）+ 全局样式
 └── index.html
 ```
-
-> 截图素材分别取自 [doit-gpui](https://github.com/nabaonan/doit-gpui) 与 [doit-mobile](https://github.com/nabaonan/doit-mobile) 的真实运行界面。

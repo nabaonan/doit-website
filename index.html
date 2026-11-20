@@ -1,27 +1,36 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Doit — 本地优先的极简待办：桌面端 Doit GPUI（纯 Rust + GPUI）与移动端 Doit Mobile（React Native）。无账号、可离线、跨端顺手。" />
-    <meta name="theme-color" content="#f4f7f2" />
+    <meta
+      name="description"
+      content="doit · 一款清新薄荷绿的待办应用。右滑完成、子任务上拆、优先级色点、月视图归档，手机端与桌面端经 WebDAV 双向同步同一份数据。"
+    />
+    <meta name="theme-color" content="#EEF7F2" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Doit — 一套待办，两种打开方式" />
-    <meta property="og:description" content="极简待办 · 桌面端 Doit GPUI 与移动端 Doit Mobile，本地优先，开源免费。" />
-    <title>Doit — 极简待办，桌面与移动端</title>
+    <meta property="og:title" content="doit · 今天的事，今天打完勾" />
+    <meta
+      property="og:description"
+      content="清新薄荷绿待办：Android 随手记，桌面端沉浸敲完，WebDAV 双向同步同一份数据。"
+    />
+    <title>doit · 今天的事，今天打完勾</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script>
-      // 首屏前应用主题，避免闪烁
+      // 首屏前应用主题，避免闪色（与 src/main.ts 同一把钥匙）
       ;(function () {
         try {
-          var t = localStorage.getItem('doit-theme')
+          var t = localStorage.getItem('doit-site-theme')
           var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
-          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
           var tc = document.querySelector('meta[name="theme-color"]')
-          if (tc) tc.setAttribute('content', dark ? '#0e120f' : '#f4f7f2')
+          if (tc) tc.setAttribute('content', dark ? '#111D1B' : '#EEF7F2')
         } catch (e) {}
       })()
     </script>

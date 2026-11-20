@@ -1,41 +1,52 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref } from 'vue'
 import SiteNav from './components/SiteNav.vue'
-import HeroShowcase from './components/HeroShowcase.vue'
-import DesktopPanel from './components/DesktopPanel.vue'
-import MobilePanel from './components/MobilePanel.vue'
-import FeatureGrid from './components/FeatureGrid.vue'
-import DownloadCta from './components/DownloadCta.vue'
+import Hero from './components/Hero.vue'
+import Products from './components/Products.vue'
+import InteractionDemo from './components/InteractionDemo.vue'
+import StatsBand from './components/StatsBand.vue'
+import ThemeBand from './components/ThemeBand.vue'
+import SyncBand from './components/SyncBand.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import { useReveal } from './composables/useReveal'
 
-onMounted(() => {
-  if (!('IntersectionObserver' in window)) return
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('revealed')
-          io.unobserve(e.target)
-        }
-      }
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-  )
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
-})
+const theme = ref<'light' | 'dark'>(
+  (document.documentElement.dataset.theme as 'light' | 'dark') || 'light',
+)
+
+function setTheme(m: 'light' | 'dark') {
+  theme.value = m
+  document.documentElement.dataset.theme = m
+  try {
+    localStorage.setItem('doit-site-theme', m)
+  } catch {
+    /* 忽略 */
+  }
+}
+
+function toggleTheme() {
+  setTheme(theme.value === 'light' ? 'dark' : 'light')
+}
+
+useReveal(() => document.getElementById('app'))
 </script>
 
 <template>
-  <div class="min-h-screen">
-    <a class="skip-link" href="#main">跳到正文</a>
-    <SiteNav />
-    <main id="main">
-      <HeroShowcase />
-      <DesktopPanel />
-      <MobilePanel />
-      <FeatureGrid />
-      <DownloadCta />
-    </main>
-    <SiteFooter />
-  </div>
+  <SiteNav :theme="theme" @toggle-theme="toggleTheme" />
+  <main>
+    <Hero />
+    <Products />
+    <InteractionDemo />
+    <StatsBand />
+    <ThemeBand @toggle-theme="toggleTheme" />
+    <SyncBand />
+  </main>
+  <SiteFooter />
 </template>
+
+<style>
+/* 顶部锚点滚动留白：sticky 导航下方内容不被盖住 */
+[id] {
+  scroll-margin-top: 72px;
+}
+</style>

@@ -1,45 +1,55 @@
 <script setup lang="ts">
-const year = new Date().getFullYear()
-const projects = [
-  { t: 'Doit GPUI', href: 'https://github.com/nabaonan/doit-gpui' },
-  { t: 'Doit Mobile', href: 'https://github.com/nabaonan/doit-mobile' },
-  { t: 'Doit（Tauri 版）', href: 'https://github.com/nabaonan/doit/releases' },
-]
+const APK_URL = 'https://github.com/nabaonan/doit-apk'
+const DESK_URL = 'https://github.com/nabaonan/doit-desktop'
+const APK_REL = APK_URL + '/releases/latest'
+const DESK_REL = DESK_URL + '/releases/latest'
 </script>
 
 <template>
-  <footer class="border-t border-line">
-    <div class="container-x py-12">
-      <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-        <div class="max-w-xs">
-          <a href="#top" class="flex items-center gap-2.5">
-            <svg viewBox="0 0 64 64" width="26" height="26" fill="none" aria-hidden="true">
-              <circle cx="32" cy="32" r="21" stroke="currentColor" stroke-width="6" class="text-brand" />
-              <path d="M22 33.5 29.5 41 44 25.5" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="text-brand" />
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-big">
+        <a class="fb-mark" href="#top">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M6.5 12.5l3.6 3.6 7.4-8.2" />
             </svg>
-            <span class="font-display text-lg font-bold tracking-tight">Doit</span>
-          </a>
-          <p class="mt-3 text-sm leading-relaxed text-ink-faint">
-            数据在你自己的设备上。本地优先，开源免费。
-          </p>
-        </div>
-
-        <div>
-          <div class="text-sm font-semibold text-ink-soft">项目</div>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li v-for="p in projects" :key="p.href">
-              <a :href="p.href" target="_blank" rel="noreferrer" class="text-ink-soft transition hover:text-brand">
-                {{ p.t }}&nbsp;↗
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <a href="#top" class="text-sm text-ink-soft transition hover:text-brand">回到顶部&nbsp;↑</a>
+          </span>
+          <b>doit</b>
+        </a>
+        <p class="footer-tag">今天的事，今天打完勾。一款薄荷绿的待办，手机和桌面都跟你一起完成。</p>
       </div>
 
-      <div class="mt-10 border-t border-line pt-6 text-[13px] text-ink-faint">
-        © {{ year }} nabaonan · 开源（MIT）· 用 Rust、Vue 与 React Native 构建
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>产品</h5>
+          <a href="#products">双端对比</a>
+          <a href="#interact">交互</a>
+          <a href="#stats">统计</a>
+          <a href="#theme">主题</a>
+          <a href="#sync">同步</a>
+        </div>
+        <div class="footer-col">
+          <h5>下载</h5>
+          <a :href="APK_REL" target="_blank" rel="noopener">Android · APK</a>
+          <a :href="DESK_REL" target="_blank" rel="noopener">桌面端 · macOS</a>
+          <a :href="DESK_REL" target="_blank" rel="noopener">桌面端 · Windows</a>
+          <a :href="DESK_REL" target="_blank" rel="noopener">桌面端 · Linux</a>
+        </div>
+        <div class="footer-col">
+          <h5>仓库</h5>
+          <a :href="APK_URL" target="_blank" rel="noopener">doit-apk · Android 源码</a>
+          <a :href="DESK_URL" target="_blank" rel="noopener">doit-desktop · 桌面端源码</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 doit · 私有项目</span>
+        <span class="vers">
+          <span>Android v1.0.13</span>
+          <span>桌面端 v0.1.3</span>
+          <span>WebDAV 双向同步</span>
+        </span>
       </div>
     </div>
   </footer>

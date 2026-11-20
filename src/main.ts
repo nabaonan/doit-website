@@ -1,11 +1,18 @@
 import { createApp } from 'vue'
-import '@unocss/reset/tailwind.css'
-import 'uno.css'
-import './style.css'
 import App from './App.vue'
-import { useTheme } from './composables/useTheme'
+import './style.css'
 
-const { init } = useTheme()
-init()
+// 主题在 Vue 挂载前先落地到 <html>，避免首帧闪色
+const THEME_KEY = 'doit-site-theme'
+function applyTheme() {
+  const stored = localStorage.getItem(THEME_KEY)
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const next = stored === 'dark' || stored === 'light' ? stored : prefersDark ? 'dark' : 'light'
+  document.documentElement.dataset.theme = next
+  return next
+}
+applyTheme()
 
 createApp(App).mount('#app')
+
+export { THEME_KEY, applyTheme }
