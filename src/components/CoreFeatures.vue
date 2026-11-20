@@ -1,29 +1,35 @@
 <script setup lang="ts">
 // 四大核心：分类 / 子任务 / 统计 / 云同步
-// 全部用 APP 真机运行截图，不是示意图。
+// 全部用 APP 真机运行截图，不是示意图。深色模式换对应深夜真机图。
+defineProps<{ theme: 'light' | 'dark' }>()
+
 const features = [
   {
     name: '分类',
     desc: '全部、工作、采购、阅读、运动。一件事归到哪一眼清楚，切一下只看这一摊。',
-    img: '/shots/home_light.png',
+    light: '/shots/home_light.png',
+    dark: '/shots/home_dark.png',
     alt: 'doit 首页：顶部分类标签与今日待办列表',
   },
   {
     name: '子任务',
     desc: '大事先拆成几步。子任务全部打勾，父任务自动完成，不用你再点第二次。',
-    img: '/shots/home_light.png',
+    light: '/shots/home_light.png',
+    dark: '/shots/home_dark.png',
     alt: 'doit 首页：父任务下展开的子任务清单，全部完成自动打勾',
   },
   {
     name: '统计',
     desc: '热力图看坚持，环形图看分布，折线看节奏。近一周、近一月、近一年翻着看。',
-    img: '/shots/stats_cards.png',
+    light: '/shots/stats_cards.png',
+    dark: '/shots/stats_cards_dark.png',
     alt: 'doit 统计页：热力图、环形图与折线图',
   },
   {
     name: '云同步',
     desc: '开启 WebDAV，手机和桌面共用一份备份。双向合并、本地优先，谁改的都不丢。',
-    img: '/shots/settings_tab_sync.png',
+    light: '/shots/settings_tab_sync.png',
+    dark: '/shots/settings_tab_sync_dark.png',
     alt: 'doit 设置页：WebDAV 自动同步开关',
   },
 ]
@@ -42,7 +48,7 @@ const features = [
         <article v-for="(f, i) in features" :key="f.name" class="feature-item reveal" :class="`feature-item--${i}`">
           <div class="phone">
             <div class="phone-notch"></div>
-            <img :src="f.img" :alt="f.alt" width="450" height="1000" loading="lazy" decoding="async" />
+            <img :src="theme === 'dark' ? f.dark : f.light" :alt="f.alt" width="450" height="1000" loading="lazy" decoding="async" />
             <div class="phone-bar"></div>
           </div>
           <h3 class="feature-name">{{ f.name }}</h3>

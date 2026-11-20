@@ -36,8 +36,8 @@ useReveal(() => document.getElementById('app'))
   <SiteNav :theme="theme" @toggle-theme="toggleTheme" />
   <main>
     <Hero />
-    <Products />
-    <CoreFeatures />
+    <Products :theme="theme" />
+    <CoreFeatures :theme="theme" />
     <InteractionDemo />
     <StatsBand />
     <ThemeBand :theme="theme" @toggle-theme="toggleTheme" />

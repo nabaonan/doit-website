@@ -374,26 +374,6 @@ p {
   font-weight: 700;
 }
 
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 3px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent-deep);
-  transform: translate(-50%, 4px);
-  opacity: 0;
-  animation: nav-dot-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes nav-dot-in {
-  to {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-}
 
 .nav-actions {
   display: flex;

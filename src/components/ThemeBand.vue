@@ -38,15 +38,19 @@ const skins = [
           </div>
 
           <div class="reveal theme-slide" aria-hidden="true">
-            <img
-              class="theme-shot"
-              :src="theme === 'dark' ? '/shots/home_dark.png' : '/shots/home_light.png'"
-              :alt="theme === 'dark' ? 'doit 深夜主题首页' : 'doit 浅色主题首页'"
-              width="450"
-              height="1000"
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="theme-phone">
+              <div class="theme-notch"></div>
+              <img
+                class="theme-shot"
+                :src="theme === 'dark' ? '/shots/home_dark.png' : '/shots/home_light.png'"
+                :alt="theme === 'dark' ? 'doit 深夜主题首页' : 'doit 浅色主题首页'"
+                width="450"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="theme-bar"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -56,32 +60,61 @@ const skins = [
 
 <style scoped>
 .theme-slide {
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  border-radius: 20px;
-  padding: 1.1rem;
-  box-shadow: var(--shadow);
   display: flex;
   justify-content: center;
-  max-height: 470px;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+/* 真机外壳：与 CoreFeatures / Products 的手机同一套语汇（刘海 + 深边 + 底部条） */
+.theme-phone {
+  position: relative;
+  height: 436px;
+  aspect-ratio: 450 / 1000;
+  border: 6px solid var(--paper-deep);
+  border-radius: 34px;
+  background: var(--card);
+  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .theme-shot {
-  width: auto;
-  height: 460px;
-  max-width: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: top;
   display: block;
 }
 
+.theme-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%;
+  height: 3.2%;
+  border-radius: 999px;
+  background: var(--paper-deep);
+  z-index: 2;
+}
+
+.theme-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 0.9%;
+  border-radius: 999px;
+  background: var(--ink-3);
+  opacity: 0.5;
+  z-index: 2;
+}
+
 @media (max-width: 620px) {
-  .theme-slide {
-    max-height: 380px;
-  }
-  .theme-shot {
-    height: 380px;
+  .theme-phone {
+    height: 360px;
   }
 }
 </style>
