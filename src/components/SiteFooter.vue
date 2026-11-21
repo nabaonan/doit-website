@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useVersions } from '../composables/useVersions'
+
 const APK_URL = 'https://github.com/nabaonan/doit-apk'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop'
 const APK_REL = APK_URL + '/releases/latest'
 const DESK_REL = DESK_URL + '/releases/latest'
+
+const { apkVersion, deskVersion } = useVersions()
 </script>
 
 <template>
@@ -44,10 +48,10 @@ const DESK_REL = DESK_URL + '/releases/latest'
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 doit · 私有项目</span>
+        <span>© 2026 doit · 开源项目</span>
         <span class="vers">
-          <span>Android v1.0.13</span>
-          <span>桌面端 v0.1.3</span>
+          <span>Android {{ apkVersion }}</span>
+          <span>桌面端 {{ deskVersion }}</span>
           <span>WebDAV 双向同步</span>
         </span>
       </div>

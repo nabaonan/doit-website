@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Smartphone, Monitor } from 'lucide-vue-next'
+import { useVersions } from '../composables/useVersions'
 
 // 双端对照：同一份数据，两个入口。展示图用真实运行截图 + CSS 模拟真机边框。
 // 桌面端从应用真实渲染截取亮/暗两张，裁掉原生标题栏只留应用内容，再套官网统一的假边框。
@@ -11,6 +12,8 @@ const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
 
 // 示例图跟随站点主题：深色模式展示两端真实的深夜界面截图
 defineProps<{ theme: 'light' | 'dark' }>()
+
+const { apkVersion, deskVersion } = useVersions()
 </script>
 
 <template>
@@ -34,7 +37,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
           </span>
           <h3>通勤路上，随手记</h3>
           <p class="one-liner">Kotlin + Jetpack Compose 原生构建，抬手就能记。</p>
-          <p class="ver">正式版 <b>v1.0.13</b> · 开源</p>
+          <p class="ver">正式版 <b>{{ apkVersion }}</b> · 开源</p>
 
           <div class="product-device">
             <div class="phone-frame" aria-label="doit 手机端真机截图">
@@ -62,7 +65,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
           </span>
           <h3>坐到电脑前，沉浸敲完</h3>
           <p class="one-liner">Tauri 2 桌面应用，键盘一敲一个准，还能托盘常驻。</p>
-          <p class="ver">正式版 <b>v0.1.3</b></p>
+          <p class="ver">正式版 <b>{{ deskVersion }}</b></p>
 
           <div class="product-device">
             <div class="desk-frame" aria-label="doit 桌面端真机截图">
