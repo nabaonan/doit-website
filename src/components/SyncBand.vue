@@ -25,9 +25,9 @@ const states = [
         </div>
 
         <div class="sync-copy">
-          <h3>手机记的，桌面继续。</h3>
+          <h3>手机记的，桌面和终端继续。</h3>
           <p>
-            在设置里开启 WebDAV，两端共用一个 <code>doit-backup.json</code>。双向合并、本地优先，不会丢掉任何一边的改动。
+            在设置里开启 WebDAV，三端共用一个 <code>doit-backup.json</code>。双向合并、本地优先，不会丢掉任何一边的改动。
           </p>
           <div class="sync-states" aria-label="同步状态示例">
             <span v-for="s in states" :key="s.label" class="state-pill">

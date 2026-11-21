@@ -4,7 +4,7 @@ import { ArrowRight, Monitor } from 'lucide-vue-next'
 import { useVersions } from '../composables/useVersions'
 
 const drawn = ref(false)
-const { apkVersion, deskVersion } = useVersions()
+const { apkVersion, deskVersion, tuiVersion } = useVersions()
 
 onMounted(() => {
   // 一次编排好的入场：等首帧稳定后再驱动描边生长
@@ -76,7 +76,9 @@ onMounted(() => {
         <p class="hero-meta">
           <span>Android {{ apkVersion }}</span>
           <span class="dot" aria-hidden="true"></span>
-          <span>桌面端 {{ deskVersion }} · macOS / Windows / Linux</span>
+          <span>桌面端 {{ deskVersion }}</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>终端版 {{ tuiVersion }}</span>
           <span class="dot" aria-hidden="true"></span>
           <span>开源在 GitHub</span>
         </p>

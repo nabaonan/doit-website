@@ -9,3 +9,4 @@ declare module '*.vue' {
 /** 构建期由 vite.config.ts 注入的最新版本号（带 v 前缀） */
 declare const __APK_VERSION__: string
 declare const __DESK_VERSION__: string
+declare const __TUI_VERSION__: string

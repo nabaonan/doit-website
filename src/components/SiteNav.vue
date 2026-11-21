@@ -6,7 +6,7 @@ defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
 const LINKS = [
-  { href: '#products', label: '双端' },
+  { href: '#products', label: '三端' },
   { href: '#features', label: '功能' },
   { href: '#interact', label: '交互' },
   { href: '#stats', label: '统计' },

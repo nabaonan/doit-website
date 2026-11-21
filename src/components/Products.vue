@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import { Smartphone, Monitor } from 'lucide-vue-next'
+import { Smartphone, Monitor, Terminal as TerminalIcon } from 'lucide-vue-next'
 import { useVersions } from '../composables/useVersions'
 
-// 双端对照：同一份数据，两个入口。展示图用真实运行截图 + CSS 模拟真机边框。
+// 三端对照：同一份数据，三个入口。展示图用真实运行截图 + CSS 模拟真机边框。
 // 桌面端从应用真实渲染截取亮/暗两张，裁掉原生标题栏只留应用内容，再套官网统一的假边框。
+// 终端版展示图 = doit-tui 在真实终端里的渲染输出（pyte 精确模拟后导出 PNG）。
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
+const TUI_URL = 'https://github.com/nabaonan/doit-tui/releases/latest'
 
 // 图片路径带 base 前缀：兼容 GitHub Pages 的 /doit-website/ 子路径部署
 const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
 
-// 示例图跟随站点主题：深色模式展示两端真实的深夜界面截图
+// 示例图跟随站点主题：深色模式展示三端真实的深夜界面截图
 defineProps<{ theme: 'light' | 'dark' }>()
 
-const { apkVersion, deskVersion } = useVersions()
+const { apkVersion, deskVersion, tuiVersion } = useVersions()
 </script>
 
 <template>
   <section id="products" class="section">
     <div class="container">
       <div class="reveal section-head">
-        <span class="eyebrow">两个入口 · 一份数据</span>
-        <h2 class="section-title">在手机上随手记，<br class="hide-mobile" />在电脑上沉浸敲完。</h2>
+        <span class="eyebrow">三个入口 · 一份数据</span>
+        <h2 class="section-title">在手机上随手记，<br class="hide-mobile" />在电脑、终端里接着干。</h2>
         <p class="section-sub">
-          同一款应用的两种形态。手机端与桌面端经 WebDAV 双向同步，共用同一个
-          <code>doit-backup.json</code>，手机记的，桌面继续。
+          同一份数据的三种形态。手机、桌面与终端版经 WebDAV 双向同步，共用同一个
+          <code>doit-backup.json</code>，手机记的，其它端继续。
         </p>
       </div>
 
@@ -86,6 +88,37 @@ const { apkVersion, deskVersion } = useVersions()
           </ul>
 
           <a class="btn btn--ghost" :href="DESK_URL" target="_blank" rel="noopener">去 GitHub Releases 下载</a>
+        </article>
+
+        <!-- 终端版 -->
+        <article class="product reveal">
+          <span class="product-tag">
+            <TerminalIcon class="ico" :size="15" aria-hidden="true" />
+            终端版 · macOS / Windows / Linux
+          </span>
+          <h3>不离开终端，也能打完今天的勾</h3>
+          <p class="one-liner">Rust + ratatui，等宽字符界面的全套待办：今日 / 统计 / 月历。</p>
+          <p class="ver">正式版 <b>{{ tuiVersion }}</b></p>
+
+          <div class="product-device">
+            <div class="term-frame" aria-label="doit 终端版运行截图">
+              <div class="term-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="term-title">doit-tui — zsh</span>
+                <span class="dots"></span>
+              </div>
+              <img :src="theme === 'dark' ? shot('tui_dark') : shot('tui_light')" :alt="theme === 'dark' ? 'doit 终端版深夜主题：ratatui 今日待办、分类胶囊与进度进度环' : 'doit 终端版：ratatui 今日待办、分类胶囊与进度进度环'" width="1816" height="1132" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <ul>
+            <li>纯键盘操作：一个键加任务、空格勾完成、1-4 切页面</li>
+            <li>父子卡片、优先级、进度环，和手机 / 桌面端完全同款语义</li>
+            <li>统计页热力图 &amp; 月历归档，终端里也能翻</li>
+            <li>WebDAV 与其它端双向同步，一份数据到处接</li>
+          </ul>
+
+          <a class="btn btn--ghost" :href="TUI_URL" target="_blank" rel="noopener">去 GitHub Releases 下载</a>
         </article>
       </div>
     </div>
@@ -193,5 +226,35 @@ code {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* —— 终端窗口边框 —— */
+.term-frame {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+.term-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 6px 13px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line-soft);
+}
+.term-title {
+  font-family: 'Menlo', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.term-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--paper-deep);
 }
 </style>

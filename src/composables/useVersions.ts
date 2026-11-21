@@ -16,6 +16,8 @@ interface VersionInfo {
   apk: string
   /** 带 v 前缀的版本号，如 v0.1.4 */
   desk: string
+  /** 带 v 前缀的版本号，如 v0.1.0 */
+  tui: string
 }
 
 interface CachePayload {
@@ -27,6 +29,7 @@ interface CachePayload {
 const BAKED: VersionInfo = {
   apk: __APK_VERSION__,
   desk: __DESK_VERSION__,
+  tui: __TUI_VERSION__,
 }
 
 const state = ref<VersionInfo>({ ...BAKED })
@@ -37,7 +40,7 @@ function readCache(): CachePayload | null {
     const raw = localStorage.getItem(CACHE_KEY)
     if (!raw) return null
     const parsed = JSON.parse(raw) as CachePayload
-    if (!parsed?.info?.apk || !parsed?.info?.desk) return null
+    if (!parsed?.info?.apk || !parsed?.info?.desk || !parsed?.info?.tui) return null
     if (Date.now() - parsed.savedAt > CACHE_TTL) return null
     return parsed
   } catch {
@@ -69,16 +72,18 @@ async function fetchLatestTag(repo: string): Promise<string | null> {
   }
 }
 
-/** 合并两个仓库的新版本号，任一失败则保留原值 */
+/** 合并三个仓库的新版本号，任一失败则保留原值 */
 async function refresh(): Promise<void> {
-  const [apk, desk] = await Promise.all([
+  const [apk, desk, tui] = await Promise.all([
     fetchLatestTag('doit-apk'),
     fetchLatestTag('doit-desktop'),
+    fetchLatestTag('doit-tui'),
   ])
-  if (!apk && !desk) return
+  if (!apk && !desk && !tui) return
   state.value = {
     apk: apk || state.value.apk,
     desk: desk || state.value.desk,
+    tui: tui || state.value.tui,
   }
   writeCache(state.value)
 }
@@ -107,6 +112,7 @@ export function useVersions() {
   return {
     apkVersion: computed(() => state.value.apk),
     deskVersion: computed(() => state.value.desk),
+    tuiVersion: computed(() => state.value.tui),
     /** 供调试：手动强制刷新 */
     refresh,
   }

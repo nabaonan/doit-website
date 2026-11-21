@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
  * 目的：首屏直接显示正确版本号（不闪一下再变），并在运行时 API 不可用时
  * 作为兜底值。探测失败则退回 FALLBACK，绝不构建失败。
  */
-const FALLBACK = { apk: 'v1.0.14', desk: 'v0.1.4' }
+const FALLBACK = { apk: 'v1.0.14', desk: 'v0.1.4', tui: 'v0.1.0' }
 
 async function latestTag(repo: string): Promise<string | null> {
   try {
@@ -32,13 +32,15 @@ async function latestTag(repo: string): Promise<string | null> {
 }
 
 async function resolveVersions() {
-  const [apk, desk] = await Promise.all([
+  const [apk, desk, tui] = await Promise.all([
     latestTag('doit-apk'),
     latestTag('doit-desktop'),
+    latestTag('doit-tui'),
   ])
   return {
     apk: apk || FALLBACK.apk,
     desk: desk || FALLBACK.desk,
+    tui: tui || FALLBACK.tui,
   }
 }
 
@@ -51,6 +53,7 @@ export default defineConfig({
   define: {
     __APK_VERSION__: JSON.stringify(versions.apk),
     __DESK_VERSION__: JSON.stringify(versions.desk),
+    __TUI_VERSION__: JSON.stringify(versions.tui),
   },
   build: {
     target: 'es2020',

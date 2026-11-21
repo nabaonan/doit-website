@@ -31,7 +31,7 @@ const features = [
   },
   {
     name: '云同步',
-    desc: '开启 WebDAV，手机和桌面共用一份备份。双向合并、本地优先，谁改的都不丢。',
+    desc: '开启 WebDAV，手机、桌面、终端共用一份备份。双向合并、本地优先，谁改的都不丢。',
     light: shot('settings_tab_sync'),
     dark: shot('settings_tab_sync_dark'),
     alt: 'doit 设置页：WebDAV 自动同步开关',
