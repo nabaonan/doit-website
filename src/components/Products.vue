@@ -107,7 +107,7 @@ const { apkVersion, deskVersion, tuiVersion } = useVersions()
                 <span class="term-title">doit-tui — zsh</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? shot('tui_dark') : shot('tui_light')" :alt="theme === 'dark' ? 'doit 终端版深夜主题：ratatui 今日待办、分类胶囊与进度进度环' : 'doit 终端版：ratatui 今日待办、分类胶囊与进度进度环'" width="1816" height="1132" loading="lazy" decoding="async" />
+              <img :src="theme === 'dark' ? shot('tui_dark') : shot('tui_light')" :alt="theme === 'dark' ? 'doit 终端版深夜主题真实运行截图：今日待办、分类胶囊与进度环' : 'doit 终端版真实运行截图：今日待办、分类胶囊与进度环'" width="1280" height="697" loading="lazy" decoding="async" />
             </div>
           </div>
 
