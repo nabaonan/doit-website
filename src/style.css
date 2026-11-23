@@ -906,11 +906,19 @@ p {
   font-size: 0.94rem;
 }
 
+/* 卡片图区：图文对调后，图在上、文字在下，图与文字之间留出舒适间距 */
+.feature-visual {
+  display: flex;
+  align-items: start;
+  margin-bottom: clamp(1.3rem, 2.4vw, 1.7rem);
+  min-height: 150px;
+}
+
 /* 进度环特例：环上数字用 Outfit 撑开 */
 .ring-demo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .ring-svg {

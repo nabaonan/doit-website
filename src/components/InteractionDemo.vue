@@ -131,44 +131,50 @@ const prios = [
       <!-- 三格：进度环 / 子任务上拆 / 优先级 -->
       <div class="features" style="margin-top: clamp(1.25rem, 3vw, 2rem)">
         <article class="feature reveal">
+          <div class="feature-visual" aria-hidden="true">
+            <div class="ring-demo">
+              <svg class="ring-svg" width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="29" />
+                <circle class="prog" cx="36" cy="36" r="29" />
+              </svg>
+              <span class="ring-label"><b>7 / 9</b><br />今天已经打完</span>
+            </div>
+          </div>
           <span class="feature-icon" aria-hidden="true">
             <Activity :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[0].title }}</h4>
           <p>{{ features[0].desc }}</p>
-          <div class="ring-demo" aria-hidden="true">
-            <svg class="ring-svg" width="72" height="72" viewBox="0 0 72 72">
-              <circle cx="36" cy="36" r="29" />
-              <circle class="prog" cx="36" cy="36" r="29" />
-            </svg>
-            <span class="ring-label"><b>7 / 9</b><br />今天已经打完</span>
-          </div>
         </article>
 
         <article class="feature reveal">
+          <div class="feature-visual" aria-hidden="true">
+            <div class="up-bubbles">
+              <span class="bubble done"><span class="c off"></span><span class="t">收集素材</span></span>
+              <span class="bubble done"><span class="c off"></span><span class="t">整理数据</span></span>
+              <span class="bubble" data-role="parent"><span class="c on"></span>写周报 · 自动整体完成</span>
+            </div>
+          </div>
           <span class="feature-icon" aria-hidden="true">
             <ListTree :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[1].title }}</h4>
           <p>{{ features[1].desc }}</p>
-          <div class="up-bubbles" aria-hidden="true">
-            <span class="bubble done"><span class="c off"></span><span class="t">收集素材</span></span>
-            <span class="bubble done"><span class="c off"></span><span class="t">整理数据</span></span>
-            <span class="bubble" data-role="parent"><span class="c on"></span>写周报 · 自动整体完成</span>
-          </div>
         </article>
 
         <article class="feature reveal">
+          <div class="feature-visual" aria-hidden="true">
+            <div class="prio-row">
+              <span v-for="p in prios" :key="p.label" class="prio">
+                <span class="dot" :style="{ background: p.c }"></span>{{ p.label }}
+              </span>
+            </div>
+          </div>
           <span class="feature-icon" aria-hidden="true">
             <Flag :size="21" :stroke-width="2.1" />
           </span>
           <h4>{{ features[2].title }}</h4>
           <p>{{ features[2].desc }}</p>
-          <div class="prio-row">
-            <span v-for="p in prios" :key="p.label" class="prio">
-              <span class="dot" :style="{ background: p.c }"></span>{{ p.label }}
-            </span>
-          </div>
         </article>
       </div>
     </div>
