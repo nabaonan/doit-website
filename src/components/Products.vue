@@ -140,7 +140,7 @@ const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
                 <span class="desk-title">doit · 原生版</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? shot('gpui_dark') : shot('gpui_light')" :alt="theme === 'dark' ? 'doit GPUI 原生版深夜主题：纯 Rust 渲染的今日待办' : 'doit GPUI 原生版：纯 Rust 渲染的今日待办'" width="1400" height="885" loading="lazy" decoding="async" />
+              <img :src="theme === 'dark' ? shot('gpui_dark') : shot('gpui_light')" :alt="theme === 'dark' ? 'doit GPUI 原生版深夜主题：纯 Rust 渲染的今日待办' : 'doit GPUI 原生版：纯 Rust 渲染的今日待办'" width="1400" height="840" loading="lazy" decoding="async" />
             </div>
           </div>
 
