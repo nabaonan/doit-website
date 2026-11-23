@@ -906,12 +906,9 @@ p {
   font-size: 0.94rem;
 }
 
-/* 卡片图区：图文对调后，图在上、文字在下，图与文字之间留出舒适间距 */
+/* 卡片图区：图在文字下方，图与上方文字之间留出舒适间距 */
 .feature-visual {
-  display: flex;
-  align-items: start;
-  margin-bottom: clamp(1.3rem, 2.4vw, 1.7rem);
-  min-height: 150px;
+  margin-top: clamp(1.3rem, 2.4vw, 1.7rem);
 }
 
 /* 进度环特例：环上数字用 Outfit 撑开 */
@@ -958,7 +955,6 @@ p {
 .up-bubbles {
   display: grid;
   gap: 0.45rem;
-  margin-top: 0.2rem;
 }
 
 .bubble {
@@ -1006,7 +1002,6 @@ p {
 .prio-row {
   display: grid;
   gap: 0.55rem;
-  margin-top: 0.3rem;
 }
 
 .prio {
