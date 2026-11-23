@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import { Smartphone, Monitor, Terminal as TerminalIcon } from 'lucide-vue-next'
+import { Smartphone, Monitor, Terminal as TerminalIcon, Cpu } from 'lucide-vue-next'
 import { useVersions } from '../composables/useVersions'
 
-// 三端对照：同一份数据，三个入口。展示图用真实运行截图 + CSS 模拟真机边框。
+// 四端对照：同一份数据，四个入口。展示图用真实运行截图 + CSS 模拟真机边框。
 // 桌面端从应用真实渲染截取亮/暗两张，裁掉原生标题栏只留应用内容，再套官网统一的假边框。
 // 终端版展示图 = doit-tui 在真实终端里的渲染输出（pyte 精确模拟后导出 PNG）。
+// GPUI 原生版展示图 = doit-gpui 纯 Rust 应用的真实运行截图（与桌面端同源视觉）。
 const APK_URL = 'https://github.com/nabaonan/doit-apk/releases/latest'
 const DESK_URL = 'https://github.com/nabaonan/doit-desktop/releases/latest'
 const TUI_URL = 'https://github.com/nabaonan/doit-tui/releases/latest'
+const GPUI_URL = 'https://github.com/nabaonan/doit-gpui/releases/latest'
 
 // 图片路径带 base 前缀：兼容 GitHub Pages 的 /doit-website/ 子路径部署
 const shot = (name: string) => `${import.meta.env.BASE_URL}shots/${name}.png`
 
-// 示例图跟随站点主题：深色模式展示三端真实的深夜界面截图
+// 示例图跟随站点主题：深色模式展示各端真实的深夜界面截图
 defineProps<{ theme: 'light' | 'dark' }>()
 
-const { apkVersion, deskVersion, tuiVersion } = useVersions()
+const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
 </script>
 
 <template>
   <section id="products" class="section">
     <div class="container">
       <div class="reveal section-head">
-        <span class="eyebrow">三个入口 · 一份数据</span>
-        <h2 class="section-title">在手机上随手记，<br class="hide-mobile" />在电脑、终端里接着干。</h2>
+        <span class="eyebrow">四个入口 · 一份数据</span>
+        <h2 class="section-title">在手机上随手记，<br class="hide-mobile" />在桌面、终端和原生版里接着干。</h2>
         <p class="section-sub">
-          同一份数据的三种形态。手机、桌面与终端版经 WebDAV 双向同步，共用同一个
+          同一份数据的四种形态。手机、桌面、终端与 GPUI 原生版经 WebDAV 双向同步，共用同一个
           <code>doit-backup.json</code>，手机记的，其它端继续。
         </p>
       </div>
@@ -119,6 +121,37 @@ const { apkVersion, deskVersion, tuiVersion } = useVersions()
           </ul>
 
           <a class="btn btn--ghost" :href="TUI_URL" target="_blank" rel="noopener">去 GitHub Releases 下载</a>
+        </article>
+
+        <!-- GPUI 原生版 -->
+        <article class="product reveal">
+          <span class="product-tag">
+            <Cpu class="ico" :size="15" aria-hidden="true" />
+            原生版 · macOS / Windows / Linux
+          </span>
+          <h3>纯 Rust 渲染，没有一层 Web</h3>
+          <p class="one-liner">GPUI 直接画到窗口上，零 WebView、零 Chromium，启动和交互都利落。</p>
+          <p class="ver">正式版 <b>{{ gpuiVersion }}</b></p>
+
+          <div class="product-device">
+            <div class="desk-frame" aria-label="doit GPUI 原生版运行截图">
+              <div class="desk-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="desk-title">doit · 原生版</span>
+                <span class="dots"></span>
+              </div>
+              <img :src="theme === 'dark' ? shot('gpui_dark') : shot('gpui_light')" :alt="theme === 'dark' ? 'doit GPUI 原生版深夜主题：纯 Rust 渲染的今日待办' : 'doit GPUI 原生版：纯 Rust 渲染的今日待办'" width="1400" height="885" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <ul>
+            <li>GPUI 直接合成窗口，不套浏览器——无 WebView / 无 Chromium</li>
+            <li>与桌面端同源的薄荷绿视觉与今日 / 统计 / 月历四页</li>
+            <li>父子卡片、优先级、进度环，语义与其它端完全一致</li>
+            <li>WebDAV 与其它端双向同步，一份数据到处接</li>
+          </ul>
+
+          <a class="btn btn--ghost" :href="GPUI_URL" target="_blank" rel="noopener">去 GitHub Releases 下载</a>
         </article>
       </div>
     </div>
