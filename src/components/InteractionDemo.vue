@@ -131,10 +131,12 @@ const prios = [
       <!-- 三格：进度环 / 子任务上拆 / 优先级 -->
       <div class="features" style="margin-top: clamp(1.25rem, 3vw, 2rem)">
         <article class="feature reveal">
-          <span class="feature-icon" aria-hidden="true">
-            <Activity :size="21" :stroke-width="2.1" />
-          </span>
-          <h4>{{ features[0].title }}</h4>
+          <div class="feature-head">
+            <span class="feature-icon" aria-hidden="true">
+              <Activity :size="21" :stroke-width="2.1" />
+            </span>
+            <h4>{{ features[0].title }}</h4>
+          </div>
           <p>{{ features[0].desc }}</p>
           <div class="feature-visual" aria-hidden="true">
             <div class="ring-demo">
@@ -148,10 +150,12 @@ const prios = [
         </article>
 
         <article class="feature reveal">
-          <span class="feature-icon" aria-hidden="true">
-            <ListTree :size="21" :stroke-width="2.1" />
-          </span>
-          <h4>{{ features[1].title }}</h4>
+          <div class="feature-head">
+            <span class="feature-icon" aria-hidden="true">
+              <ListTree :size="21" :stroke-width="2.1" />
+            </span>
+            <h4>{{ features[1].title }}</h4>
+          </div>
           <p>{{ features[1].desc }}</p>
           <div class="feature-visual" aria-hidden="true">
             <div class="up-bubbles">
@@ -163,10 +167,12 @@ const prios = [
         </article>
 
         <article class="feature reveal">
-          <span class="feature-icon" aria-hidden="true">
-            <Flag :size="21" :stroke-width="2.1" />
-          </span>
-          <h4>{{ features[2].title }}</h4>
+          <div class="feature-head">
+            <span class="feature-icon" aria-hidden="true">
+              <Flag :size="21" :stroke-width="2.1" />
+            </span>
+            <h4>{{ features[2].title }}</h4>
+          </div>
           <p>{{ features[2].desc }}</p>
           <div class="feature-visual" aria-hidden="true">
             <div class="prio-row">
