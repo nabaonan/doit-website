@@ -926,13 +926,13 @@ p {
 .ring-svg .prog {
   stroke: var(--accent);
   stroke-linecap: round;
-  stroke-dasharray: 188.5;
-  stroke-dashoffset: 188.5;
+  stroke-dasharray: 182.2;
+  stroke-dashoffset: 182.2;
   transition: stroke-dashoffset 1.4s cubic-bezier(0.3, 0.8, 0.3, 1);
 }
 
 .reveal.in .ring-svg .prog {
-  stroke-dashoffset: 41.9; /* 7/9 ≈ 78% */
+  stroke-dashoffset: 40.5; /* 7/9 ≈ 78% */
 }
 
 .ring-label {
@@ -1465,6 +1465,6 @@ p {
   }
 
   .ring-svg .prog {
-    stroke-dashoffset: 41.9;
+    stroke-dashoffset: 40.5;
   }
 }

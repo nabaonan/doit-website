@@ -137,9 +137,9 @@ const prios = [
           <h4>{{ features[0].title }}</h4>
           <p>{{ features[0].desc }}</p>
           <div class="ring-demo" aria-hidden="true">
-            <svg class="ring-svg" width="66" height="66" viewBox="0 0 66 66">
-              <circle cx="33" cy="33" r="30" />
-              <circle class="prog" cx="33" cy="33" r="30" />
+            <svg class="ring-svg" width="72" height="72" viewBox="0 0 72 72">
+              <circle cx="36" cy="36" r="29" />
+              <circle class="prog" cx="36" cy="36" r="29" />
             </svg>
             <span class="ring-label"><b>7 / 9</b><br />今天已经打完</span>
           </div>
