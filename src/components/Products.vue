@@ -41,7 +41,7 @@ interface Tab {
   frameTitle: string
   bullets: string[]
   url: string
-  version: string
+  version: () => string
 }
 
 const tabs: Tab[] = [
@@ -63,7 +63,7 @@ const tabs: Tab[] = [
       '月视图归档 · 分类胶囊换色 · 检查更新应用内装 APK',
     ],
     url: APK_URL,
-    version: apkVersion.value,
+    version: () => apkVersion.value,
   },
   {
     kind: 'desk',
@@ -83,7 +83,7 @@ const tabs: Tab[] = [
       '托盘、开机自启、应用内自动更新',
     ],
     url: DESK_URL,
-    version: deskVersion.value,
+    version: () => deskVersion.value,
   },
   {
     kind: 'term',
@@ -103,7 +103,7 @@ const tabs: Tab[] = [
       'WebDAV 与其它端双向同步，一份数据到处接',
     ],
     url: TUI_URL,
-    version: tuiVersion.value,
+    version: () => tuiVersion.value,
   },
   {
     kind: 'gpui',
@@ -123,13 +123,16 @@ const tabs: Tab[] = [
       'WebDAV 与其它端双向同步，一份数据到处接',
     ],
     url: GPUI_URL,
-    version: gpuiVersion.value,
+    version: () => gpuiVersion.value,
   },
 ]
 
 // —— 当前选中 tab ——
 const active = ref(0)
-const current = computed(() => tabs[active.value])
+const current = computed(() => {
+  const t = tabs[active.value]
+  return { ...t, version: t.version() }
+})
 const isDark = computed(() => props.theme === 'dark')
 
 // —— 定时自动轮换：每 5 秒切到下一个，循环；悬停暂停，点击重置 ——
@@ -194,7 +197,23 @@ onBeforeUnmount(stopRotate)
         </p>
       </div>
 
-      <!-- 上方：当前端展示区 -->
+      <!-- 上方：胶囊 tab -->
+      <nav class="tab-pills reveal" aria-label="选择端" @mouseenter="onHover(true)" @mouseleave="onHover(false)">
+        <button
+          v-for="(t, i) in tabs"
+          :key="t.kind"
+          type="button"
+          class="pill"
+          :class="{ active: i === active }"
+          :aria-pressed="i === active"
+          @click="select(i)"
+        >
+          <component :is="t.icon" :size="15" aria-hidden="true" />
+          <span>{{ t.label }}</span>
+        </button>
+      </nav>
+
+      <!-- 下方：当前端展示区 -->
       <div class="tab-stage reveal" @mouseenter="onHover(true)" @mouseleave="onHover(false)">
         <Transition name="tab-swap" mode="out-in">
           <div :key="current.kind" class="tab-panel">
@@ -247,22 +266,6 @@ onBeforeUnmount(stopRotate)
           </div>
         </Transition>
       </div>
-
-      <!-- 下方：胶囊 tab -->
-      <nav class="tab-pills reveal" aria-label="选择端" @mouseenter="onHover(true)" @mouseleave="onHover(false)">
-        <button
-          v-for="(t, i) in tabs"
-          :key="t.kind"
-          type="button"
-          class="pill"
-          :class="{ active: i === active }"
-          :aria-pressed="i === active"
-          @click="select(i)"
-        >
-          <component :is="t.icon" :size="15" aria-hidden="true" />
-          <span>{{ t.label }}</span>
-        </button>
-      </nav>
     </div>
   </section>
 </template>
@@ -287,7 +290,7 @@ code {
 
 /* —— 展示台 —— */
 .tab-stage {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(1.1rem, 2.5vw, 1.6rem);
 }
 .tab-panel {
   background: var(--card);
@@ -370,7 +373,7 @@ code {
   flex-wrap: wrap;
   gap: 0.55rem;
   justify-content: center;
-  margin-top: clamp(1.1rem, 2.5vw, 1.6rem);
+  margin-top: clamp(0.25rem, 1vw, 0.75rem);
 }
 .pill {
   display: inline-flex;
