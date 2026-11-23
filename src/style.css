@@ -83,8 +83,38 @@
 }
 
 /* ============================================================
+   截图淡入：预加载后切换主题时平滑过渡，避免闪烁
+   ============================================================ */
+.phone-frame img,
+.desk-frame img,
+.term-frame img,
+.phone img,
+.theme-phone img {
+  transition: opacity 0.18s ease;
+  opacity: 0;
+}
+.phone-frame img.loaded,
+.desk-frame img.loaded,
+.term-frame img.loaded,
+.phone img.loaded,
+.theme-phone img.loaded {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone-frame img,
+  .desk-frame img,
+  .term-frame img,
+  .phone img,
+  .theme-phone img {
+    transition: none;
+    opacity: 1;
+  }
+}
+
+/* ============================================================
    基础
    ============================================================ */
+
 
 *,
 *::before,

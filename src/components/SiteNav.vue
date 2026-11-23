@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { prefetchThemeShots } from '../composables/useThemeShots'
 
 // 顶部导航：logo + 锚点 + 「浅色/深夜」分段开关 + 下载
 defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
+
+// 悬停主题按钮时预载目标主题截图：鼠标挪过去 = 很可能要切，提前拉图避免切换闪现
+function onHoverTarget(target: 'light' | 'dark') {
+  prefetchThemeShots(target)
+}
 
 const LINKS = [
   { href: '#products', label: '四端' },
@@ -84,6 +90,7 @@ onBeforeUnmount(() => {
             :aria-pressed="theme === 'light'"
             :tabindex="theme === 'dark' ? 0 : -1"
             @click="emit('toggle-theme')"
+            @mouseenter="onHoverTarget('light')"
           >
             浅色
           </button>
@@ -92,6 +99,7 @@ onBeforeUnmount(() => {
             :aria-pressed="theme === 'dark'"
             :tabindex="theme === 'light' ? 0 : -1"
             @click="emit('toggle-theme')"
+            @mouseenter="onHoverTarget('dark')"
           >
             深夜
           </button>

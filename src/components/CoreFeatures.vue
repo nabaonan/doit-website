@@ -1,6 +1,10 @@
 <script setup lang="ts">
 // 四大核心：分类 / 子任务 / 统计 / 云同步
 // 全部用 APP 真机运行截图，不是示意图。深色模式换对应深夜真机图。
+import { fadeLoad } from '../directives/fadeLoad'
+
+const vFadeLoad = fadeLoad
+
 defineProps<{ theme: 'light' | 'dark' }>()
 
 // 图片路径必须带 base 前缀：GitHub Pages 部署在 /doit-website/ 子路径下，
@@ -52,7 +56,7 @@ const features = [
         <article v-for="(f, i) in features" :key="f.name" class="feature-item reveal" :class="`feature-item--${i}`">
           <div class="phone">
             <div class="phone-notch"></div>
-            <img :src="theme === 'dark' ? f.dark : f.light" :alt="f.alt" width="450" height="1000" loading="lazy" decoding="async" />
+            <img v-fade-load :src="theme === 'dark' ? f.dark : f.light" :alt="f.alt" width="450" height="1000" loading="lazy" decoding="async" />
             <div class="phone-bar"></div>
           </div>
           <h3 class="feature-name">{{ f.name }}</h3>

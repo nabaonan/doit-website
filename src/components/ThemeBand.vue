@@ -2,6 +2,10 @@
 // 主题展示带：左侧文案 + 右侧真机截图对照。
 // 主主题切到深夜时展示深夜真机图，切回浅色展示浅色真机图，
 // 这块本身就是主题切换的活演示。
+import { fadeLoad } from '../directives/fadeLoad'
+
+const vFadeLoad = fadeLoad
+
 defineProps<{ theme: 'light' | 'dark' }>()
 const emit = defineEmits<{ (e: 'toggle-theme'): void }>()
 
@@ -44,6 +48,7 @@ const skins = [
             <div class="theme-phone">
               <div class="theme-notch"></div>
               <img
+                v-fade-load
                 class="theme-shot"
                 :src="theme === 'dark' ? shot('home_dark') : shot('home_light')"
                 :alt="theme === 'dark' ? 'doit 深夜主题首页' : 'doit 浅色主题首页'"

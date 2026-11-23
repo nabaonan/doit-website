@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Smartphone, Monitor, Terminal as TerminalIcon, Cpu } from 'lucide-vue-next'
 import { useVersions } from '../composables/useVersions'
+import { fadeLoad } from '../directives/fadeLoad'
+
+const vFadeLoad = fadeLoad
 
 // 四端对照：同一份数据，四个入口。展示图用真实运行截图 + CSS 模拟真机边框。
 // 桌面端从应用真实渲染截取亮/暗两张，裁掉原生标题栏只留应用内容，再套官网统一的假边框。
@@ -46,7 +49,7 @@ const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
           <div class="product-device">
             <div class="phone-frame" aria-label="doit 手机端真机截图">
               <div class="phone-notch"></div>
-              <img :src="theme === 'dark' ? shot('home_dark') : shot('home_light')" :alt="theme === 'dark' ? 'doit Android 深夜主题首页：分类标签、今日待办与进度环' : 'doit Android 首页：分类标签、今日待办与进度环'" width="450" height="1000" loading="lazy" decoding="async" />
+              <img v-fade-load :src="theme === 'dark' ? shot('home_dark') : shot('home_light')" :alt="theme === 'dark' ? 'doit Android 深夜主题首页：分类标签、今日待办与进度环' : 'doit Android 首页：分类标签、今日待办与进度环'" width="450" height="1000" loading="lazy" decoding="async" />
               <div class="phone-bar"></div>
             </div>
           </div>
@@ -78,7 +81,7 @@ const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
                 <span class="desk-title">doit · 今日</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? shot('desk_today_dark') : shot('desk_today')" :alt="theme === 'dark' ? 'doit 桌面端深夜主题真实运行截图：分类标签、任务列表与子任务' : 'doit 桌面端真实运行截图：分类标签、任务列表与子任务'" width="1400" height="885" loading="lazy" decoding="async" />
+              <img v-fade-load :src="theme === 'dark' ? shot('desk_today_dark') : shot('desk_today')" :alt="theme === 'dark' ? 'doit 桌面端深夜主题真实运行截图：分类标签、任务列表与子任务' : 'doit 桌面端真实运行截图：分类标签、任务列表与子任务'" width="1400" height="885" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -109,7 +112,7 @@ const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
                 <span class="term-title">doit-tui — zsh</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? shot('tui_dark') : shot('tui_light')" :alt="theme === 'dark' ? 'doit 终端版深夜主题真实运行截图：今日待办、分类胶囊与进度环' : 'doit 终端版真实运行截图：今日待办、分类胶囊与进度环'" width="1280" height="697" loading="lazy" decoding="async" />
+              <img v-fade-load :src="theme === 'dark' ? shot('tui_dark') : shot('tui_light')" :alt="theme === 'dark' ? 'doit 终端版深夜主题真实运行截图：今日待办、分类胶囊与进度环' : 'doit 终端版真实运行截图：今日待办、分类胶囊与进度环'" width="1280" height="697" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -140,7 +143,7 @@ const { apkVersion, deskVersion, tuiVersion, gpuiVersion } = useVersions()
                 <span class="desk-title">doit · 原生版</span>
                 <span class="dots"></span>
               </div>
-              <img :src="theme === 'dark' ? shot('gpui_dark') : shot('gpui_light')" :alt="theme === 'dark' ? 'doit GPUI 原生版深夜主题：纯 Rust 渲染的今日待办' : 'doit GPUI 原生版：纯 Rust 渲染的今日待办'" width="1400" height="840" loading="lazy" decoding="async" />
+              <img v-fade-load :src="theme === 'dark' ? shot('gpui_dark') : shot('gpui_light')" :alt="theme === 'dark' ? 'doit GPUI 原生版深夜主题：纯 Rust 渲染的今日待办' : 'doit GPUI 原生版：纯 Rust 渲染的今日待办'" width="1400" height="840" loading="lazy" decoding="async" />
             </div>
           </div>
 
