@@ -4,12 +4,13 @@ import { computed, ref } from 'vue'
  * 版本号数据源：Android 与桌面端的最新正式版号。
  *
  * 策略：构建期探测一次写入产物（首屏即正确，不闪烁），运行时再用 GitHub
- * Releases API 刷新。匿名 API 限流 60 次/小时/IP，因此结果落 localStorage
- * 缓存一小时，避免每次刷新都打接口。取不到时保持构建期注入的值，不显示空。
+ * Releases API 刷新。匿名 API 限流 60 次/小时/IP，结果落 localStorage 缓存
+ * 5 分钟，既保证发版后能较快看到新版本号，又不至于每次刷新都打接口。
+ * 取不到时保持构建期注入的值，不显示空。
  */
 
 const CACHE_KEY = 'doit-site-versions'
-const CACHE_TTL = 60 * 60 * 1000 // 1 小时
+const CACHE_TTL = 5 * 60 * 1000 // 5 分钟
 
 interface VersionInfo {
   /** 带 v 前缀的版本号，如 v1.0.14 */
